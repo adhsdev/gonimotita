@@ -10,7 +10,17 @@
   "theme_color": "#C9727A",
   "id": "gonimotita-plus",
   "icons": [
-    {"src": "/gonimotita/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
-    {"src": "/gonimotita/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+    {
+      "src": "https://adhsdev.github.io/gonimotita/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://adhsdev.github.io/gonimotita/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
