@@ -1,0 +1,26 @@
+{
+  "name": "Gonimotita Plus",
+  "short_name": "Gonimotita+",
+  "description": "Cycle and pregnancy tracking app.",
+  "start_url": "https://meek-nougat-5d2d0a.netlify.app/",
+  "scope": "https://meek-nougat-5d2d0a.netlify.app/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFF8F9",
+  "theme_color": "#C9727A",
+  "id": "gonimotita-plus",
+  "icons": [
+    {
+      "src": "https://meek-nougat-5d2d0a.netlify.app/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://meek-nougat-5d2d0a.netlify.app/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

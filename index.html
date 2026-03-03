@@ -1,0 +1,2299 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIkdvbmltb3RpdGEgUGx1cyIsICJzaG9ydF9uYW1lIjogIkdvbmltb3RpdGErIiwgImRlc2NyaXB0aW9uIjogIkN5Y2xlIGFuZCBwcmVnbmFuY3kgdHJhY2tpbmcgYXBwLiIsICJzdGFydF91cmwiOiAiaHR0cHM6Ly9tZWVrLW5vdWdhdC01ZDJkMGEubmV0bGlmeS5hcHAvIiwgInNjb3BlIjogImh0dHBzOi8vbWVlay1ub3VnYXQtNWQyZDBhLm5ldGxpZnkuYXBwLyIsICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLCAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLCAiYmFja2dyb3VuZF9jb2xvciI6ICIjRkZGOEY5IiwgInRoZW1lX2NvbG9yIjogIiNDOTcyN0EiLCAiaWQiOiAiZ29uaW1vdGl0YS1wbHVzIiwgImljb25zIjogW3sic3JjIjogImh0dHBzOi8vbWVlay1ub3VnYXQtNWQyZDBhLm5ldGxpZnkuYXBwL2ljb25zL2ljb24tMTkyLnBuZyIsICJzaXplcyI6ICIxOTJ4MTkyIiwgInR5cGUiOiAiaW1hZ2UvcG5nIiwgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIn0sIHsic3JjIjogImh0dHBzOi8vbWVlay1ub3VnYXQtNWQyZDBhLm5ldGxpZnkuYXBwL2ljb25zL2ljb24tNTEyLnBuZyIsICJzaXplcyI6ICI1MTJ4NTEyIiwgInR5cGUiOiAiaW1hZ2UvcG5nIiwgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIn1dfQ==">
+  <meta name="theme-color" content="#C9727A">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Gonimotita+">
+  <link rel="apple-touch-icon" href="https://meek-nougat-5d2d0a.netlify.app/icons/icon-192.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#C9727A">
+<title>Γονιμότητα+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+:root {
+  --rose:#C9727A; --rose-l:#F2D4D6; --rose-d:#9E4E55;
+  --sage:#7A9E8E; --sage-l:#D4E8E0;
+  --gold:#C4A46B; --gold-l:#F0E4CC;
+  --lav:#9B8EC4; --lav-l:#E8E4F4;
+  --sky:#7BAED4;
+  --bg:#FDF6F0; --bg2:#F5EDE5;
+  --card:#FFFFFF; --card2:#FDF6F0;
+  --text:#2D2020; --ts:#7A5C5C; --tm:#B08888;
+  --border:rgba(201,114,122,0.15);
+  --sh:0 4px 20px rgba(201,114,122,0.12);
+  --r:16px; --r2:12px;
+  --serif:'Noto Serif',Georgia,serif;
+  --sans:'Noto Sans','Segoe UI',system-ui,sans-serif;
+  --trans:all 0.25s ease;
+}
+[data-theme="dark"] {
+  --rose:#E08A91; --rose-l:#3D1E22; --rose-d:#F2B5BA;
+  --sage:#8BBDAC; --sage-l:#1A302A;
+  --gold:#D4B47B; --gold-l:#2A2010;
+  --lav:#B8ADDC; --lav-l:#251F35;
+  --bg:#1A1014; --bg2:#221418;
+  --card:#2A1A1E; --card2:#1E1216;
+  --text:#F5E8E8; --ts:#C4A0A0; --tm:#7A5858;
+  --border:rgba(224,138,145,0.12);
+  --sh:0 4px 20px rgba(0,0,0,0.4);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--rose-l);border-radius:2px}
+
+/* LAYOUT */
+.app{max-width:500px;margin:0 auto;padding-bottom:80px}
+.page{display:none;padding:0 16px;animation:fadeIn .3s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* TOP BAR */
+.topbar{position:sticky;top:0;z-index:100;background:var(--bg);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.logo{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--rose-d)}
+.topbar-actions{display:flex;gap:8px;align-items:center}
+.lang-toggle{display:flex;background:var(--card2);border-radius:20px;padding:2px}
+.lang-btn{background:none;border:none;padding:4px 10px;border-radius:18px;font-size:12px;font-weight:700;color:var(--ts);cursor:pointer;font-family:var(--sans);transition:var(--trans)}
+.lang-btn.active{background:var(--rose);color:white}
+.icon-btn{width:36px;height:36px;border-radius:50%;border:none;background:var(--card2);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:var(--trans)}
+.icon-btn:active{transform:scale(0.9)}
+
+/* BOTTOM NAV */
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--card);border-top:1px solid var(--border);display:flex;max-width:500px;margin:0 auto}
+.nav-btn{flex:1;padding:8px 4px 10px;border:none;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:var(--trans)}
+.nav-btn .ni{font-size:20px}
+.nav-btn .nl{font-size:10px;font-weight:600;color:var(--ts);font-family:var(--sans)}
+.nav-btn.active .nl{color:var(--rose)}
+.nav-btn.active .ni{filter:none}
+
+/* CARDS */
+.card{background:var(--card);border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:var(--sh);border:1px solid var(--border)}
+.card-title{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--rose-d);margin-bottom:12px}
+.page-title{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--rose-d);padding:16px 0 8px}
+
+/* INPUTS */
+.input-group{margin-bottom:12px}
+.label{font-size:12px;font-weight:600;color:var(--ts);margin-bottom:6px;display:block}
+.input{width:100%;padding:11px 14px;border-radius:var(--r2);border:1.5px solid var(--border);background:var(--card2);color:var(--text);font-size:14px;font-family:var(--sans);transition:var(--trans);outline:none}
+.input:focus{border-color:var(--rose)}
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* BUTTONS */
+.btn{width:100%;padding:13px;border-radius:var(--r2);border:none;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;transition:var(--trans)}
+.btn:active{transform:scale(0.97)}
+.btn-primary{background:linear-gradient(135deg,var(--rose),var(--rose-d));color:white}
+.btn-secondary{background:var(--card2);color:var(--text);border:1.5px solid var(--border)}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+
+/* PHASE BANNER */
+.phase-banner{border-radius:var(--r);padding:20px;margin-bottom:12px;color:white;position:relative;overflow:hidden}
+.phase-banner::after{content:'';position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.08)}
+.phase-title{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1}
+.phase-sub{font-size:13px;opacity:.85;margin-top:6px}
+.phase-pct{position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:36px;font-weight:700;opacity:.9}
+.phase-bar{height:6px;background:rgba(255,255,255,.25);border-radius:3px;margin-top:14px;overflow:hidden}
+.phase-bar-fill{height:100%;background:rgba(255,255,255,.8);border-radius:3px;transition:width .8s ease}
+
+/* FERTILE BANNER */
+.fertile-banner{background:linear-gradient(135deg,var(--sage),#5A8E7E);border-radius:var(--r);padding:14px 18px;margin-bottom:12px;color:white;display:none;align-items:center;gap:12px}
+.fertile-banner.show{display:flex}
+
+/* COUNTDOWN */
+.countdown{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.cd-box{background:var(--card);border-radius:var(--r2);padding:14px 8px;text-align:center;border:1px solid var(--border);box-shadow:var(--sh)}
+.cd-num{font-family:var(--serif);font-size:30px;font-weight:700;color:var(--rose-d);line-height:1}
+.cd-label{font-size:11px;color:var(--ts);margin-top:4px;font-weight:600}
+
+/* SYMPTOM GRID */
+.sym-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sym{background:var(--card2);border-radius:var(--r2);padding:10px 6px;text-align:center;border:1.5px solid var(--border);cursor:pointer;transition:var(--trans)}
+.sym:active{transform:scale(0.95)}
+.sym.on{background:var(--rose-l);border-color:var(--rose)}
+.sym-icon{font-size:22px;display:block;margin-bottom:4px}
+.sym-name{font-size:11px;font-weight:600;color:var(--ts)}
+
+/* TOGGLE */
+.toggle-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)}
+.toggle-row:last-child{border-bottom:none}
+.toggle-info h4{font-size:14px;font-weight:600;color:var(--text)}
+.toggle-info p{font-size:12px;color:var(--ts);margin-top:2px}
+.toggle-switch{width:44px;height:24px;border-radius:12px;background:var(--border);border:none;cursor:pointer;position:relative;transition:var(--trans);flex-shrink:0}
+.toggle-switch.on{background:var(--rose)}
+.toggle-switch::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:white;transition:var(--trans)}
+.toggle-switch.on::after{transform:translateX(20px)}
+
+/* CALENDAR */
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cal-nav-btn{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--border);background:var(--card2);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:var(--trans)}
+.cal-month{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--text)}
+.cal-days-header{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:6px}
+.cal-day-name{text-align:center;font-size:11px;font-weight:700;color:var(--ts);padding:4px 0}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-day{aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;cursor:pointer;transition:var(--trans)}
+.cal-day:active{transform:scale(0.9)}
+.cal-day.period{background:var(--rose-l);color:var(--rose-d);font-weight:700}
+.cal-day.fertile{background:var(--sage-l);color:var(--sage)}
+.cal-day.ovulation{background:var(--sage);color:white;font-weight:700}
+.cal-day.today{outline:2px solid var(--rose);outline-offset:1px}
+.cal-day.other{color:var(--tm)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--ts)}
+.leg-dot{width:12px;height:12px;border-radius:50%}
+
+/* TABS */
+.tabs{display:flex;background:var(--card2);border-radius:var(--r2);padding:3px;margin-bottom:14px;gap:3px}
+.tab{flex:1;padding:8px 4px;border-radius:10px;border:none;background:none;font-size:12px;font-weight:600;color:var(--ts);cursor:pointer;font-family:var(--sans);transition:var(--trans);text-align:center}
+.tab.active{background:var(--rose);color:white}
+
+/* INFO ITEMS */
+.info-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.info-item:last-child{border-bottom:none}
+.info-emoji{font-size:24px;flex-shrink:0;width:32px;text-align:center;margin-top:2px}
+.info-h4{font-size:14px;font-weight:600;color:var(--text)}
+.info-p{font-size:12px;color:var(--ts);margin-top:3px;line-height:1.5}
+
+/* BBT CHART */
+.chart-wrap{height:200px;position:relative}
+
+/* TIP CARD */
+.tip-card{background:linear-gradient(135deg,var(--rose-l),rgba(244,212,215,0.3));border-left:4px solid var(--rose);border-radius:0 var(--r2) var(--r2) 0;padding:14px;margin-bottom:12px}
+.tip-emoji{font-size:20px;margin-bottom:6px}
+.tip-text{font-size:14px;color:var(--text);line-height:1.6;font-style:italic}
+
+/* MOOD */
+.mood-row{display:flex;justify-content:space-between;margin:10px 0}
+.mood-btn{width:52px;height:52px;border-radius:50%;border:2px solid var(--border);background:var(--card2);font-size:26px;cursor:pointer;transition:var(--trans);display:flex;align-items:center;justify-content:center}
+.mood-btn.on{border-color:var(--rose);background:var(--rose-l);transform:scale(1.15)}
+
+/* SUPPLEMENTS */
+.supp-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.supp{padding:12px;border-radius:var(--r2);background:var(--card2);border:1.5px solid var(--border);cursor:pointer;transition:var(--trans);display:flex;align-items:center;gap:8px}
+.supp:active{transform:scale(0.97)}
+.supp.taken{background:var(--sage-l);border-color:var(--sage)}
+.supp-icon{font-size:22px}
+.supp-name{font-size:12px;font-weight:700;color:var(--text)}
+.supp-dose{font-size:11px;color:var(--ts)}
+.supp-check{margin-left:auto;font-size:16px}
+
+/* WATER */
+.water-row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.water-glass{font-size:28px;cursor:pointer;transition:transform .2s;opacity:.35}
+.water-glass.full{opacity:1}
+
+/* PREDICTIONS */
+.pred-item{padding:12px;border-radius:var(--r2);background:var(--card2);border:1.5px solid var(--border);margin-bottom:8px;display:flex;gap:10px;align-items:flex-start}
+.pred-num{width:32px;height:32px;border-radius:50%;background:var(--rose-l);color:var(--rose-d);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pred-h4{font-size:13px;font-weight:700;color:var(--text)}
+.pred-p{font-size:12px;color:var(--ts);margin-top:3px}
+
+/* TOAST */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--text);color:var(--bg);padding:10px 22px;border-radius:20px;font-size:13px;font-weight:600;z-index:999;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:none;align-items:flex-end;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--card);border-radius:24px 24px 0 0;padding:24px 20px;width:100%;max-width:500px;max-height:85vh;overflow-y:auto;position:relative}
+.modal-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px}
+.modal-title{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--rose-d);margin-bottom:16px}
+.modal-close{position:absolute;top:16px;right:16px;font-size:20px;cursor:pointer;color:var(--ts);background:none;border:none}
+
+/* INFO BOXES */
+.infobox{border-radius:var(--r2);padding:13px;margin-bottom:8px;border:1px solid var(--border)}
+.infobox.warn{background:rgba(228,162,58,.1);border-color:rgba(228,162,58,.3)}
+.infobox.danger{background:rgba(201,114,122,.1);border-color:rgba(201,114,122,.3)}
+.infobox.safe{background:rgba(122,158,142,.1);border-color:rgba(122,158,142,.3)}
+.infobox h4{font-size:13px;font-weight:700;margin-bottom:4px}
+.infobox.warn h4{color:#C47A30}
+.infobox.danger h4{color:var(--rose-d)}
+.infobox.safe h4{color:var(--sage)}
+.infobox p{font-size:12px;color:var(--ts);line-height:1.5}
+
+/* PILL STRIP */
+.pill-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin:12px 0}
+.pill-day{aspect-ratio:1;border-radius:50%;border:2px solid var(--border);background:var(--card2);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:var(--trans);font-size:10px;font-weight:700;color:var(--ts)}
+.pill-day.taken{background:linear-gradient(135deg,#E8A87C,#C47A50);border-color:transparent;color:white}
+.pill-day.missed{background:var(--rose-l);border-color:var(--rose);color:var(--rose-d)}
+.pill-day.pause{background:var(--sage-l);border-color:var(--sage);color:var(--sage)}
+.pill-day.today-ring{box-shadow:0 0 0 3px rgba(232,168,124,.5)}
+.pill-type-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.pill-type-btn{padding:12px 8px;border-radius:var(--r2);border:2px solid var(--border);background:var(--card2);cursor:pointer;text-align:center;font-family:var(--sans);transition:var(--trans)}
+.pill-type-btn.active{border-color:#E8A87C;background:rgba(232,168,124,.1)}
+.pill-type-icon{font-size:26px;margin-bottom:4px}
+.pill-type-name{font-size:12px;font-weight:700;color:var(--text)}
+.pill-type-desc{font-size:11px;color:var(--ts);margin-top:2px}
+
+/* PREGNANCY */
+.preg-hero{background:linear-gradient(135deg,var(--lav),#7A6EA4);border-radius:var(--r);padding:22px;margin-bottom:12px;color:white;text-align:center;position:relative;overflow:hidden}
+.preg-hero::before{content:'🤰';position:absolute;right:-10px;bottom:-10px;font-size:80px;opacity:.12}
+.preg-week{font-family:var(--serif);font-size:64px;font-weight:700;line-height:1}
+.preg-label{font-size:13px;opacity:.85;margin-top:4px}
+.preg-due{margin-top:12px;display:inline-block;background:rgba(255,255,255,.2);border-radius:10px;padding:7px 16px;font-size:14px;font-weight:600}
+.tri-segs{display:flex;gap:4px;margin:10px 0 6px}
+.tri-seg{flex:1;height:10px;border-radius:5px;opacity:.3;transition:var(--trans)}
+.tri-seg.on{opacity:1}
+.tri-t1{background:linear-gradient(90deg,var(--lav),#B8ADDC)}
+.tri-t2{background:linear-gradient(90deg,var(--sky),#9BCAE4)}
+.tri-t3{background:linear-gradient(90deg,var(--sage),#9ABEAD)}
+.tri-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--ts);font-weight:600}
+.preg-progress{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:8px}
+.preg-progress-fill{height:100%;background:linear-gradient(90deg,var(--lav),var(--sky));border-radius:3px;transition:width .8s}
+
+/* INTERCOURSE */
+.intercourse-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.int-btn{padding:14px 8px;border-radius:var(--r2);border:2px solid var(--border);background:var(--card2);cursor:pointer;text-align:center;font-family:var(--sans);transition:var(--trans)}
+.int-btn:active{transform:scale(0.97)}
+.int-btn.on.unprotected{background:var(--rose-l);border-color:var(--rose)}
+.int-btn.on.protected{background:var(--sage-l);border-color:var(--sage)}
+.int-btn-icon{font-size:28px;margin-bottom:6px}
+.int-btn-name{font-size:12px;font-weight:700;color:var(--text)}
+.conception-banner{border-radius:var(--r2);padding:16px;color:white;margin-bottom:12px}
+.conc-pct{font-family:var(--serif);font-size:36px;font-weight:700}
+.conc-label{font-size:13px;opacity:.85;margin-top:2px}
+.conc-bar-wrap{background:rgba(255,255,255,.25);border-radius:4px;height:6px;overflow:hidden;margin-top:10px}
+.conc-bar-fill{height:100%;background:white;border-radius:4px;transition:width .8s}
+.conc-detail{background:var(--card2);border-radius:var(--r2);padding:12px;border:1px solid var(--border);font-size:12px;color:var(--ts);line-height:1.7}
+.int-history-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.int-history-item:last-child{border-bottom:none}
+
+/* QUIZ */
+.quiz-q{font-size:16px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:16px}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{padding:12px 16px;border-radius:var(--r2);border:1.5px solid var(--border);background:var(--card2);text-align:left;cursor:pointer;font-family:var(--sans);font-size:14px;color:var(--text);transition:var(--trans)}
+.quiz-opt:active{transform:scale(0.98)}
+.quiz-opt.correct{background:var(--sage-l);border-color:var(--sage);color:var(--sage)}
+.quiz-opt.wrong{background:var(--rose-l);border-color:var(--rose);color:var(--rose-d)}
+.quiz-exp{margin-top:12px;padding:12px;background:var(--gold-l);border-radius:var(--r2);font-size:13px;color:var(--text);line-height:1.5;border-left:3px solid var(--gold)}
+.quiz-prog{height:5px;background:var(--border);border-radius:3px;margin-bottom:16px;overflow:hidden}
+.quiz-prog-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--rose-d));border-radius:3px;transition:width .5s}
+.quiz-score{text-align:center;padding:20px}
+.quiz-score-num{font-family:var(--serif);font-size:56px;font-weight:700;color:var(--rose-d)}
+
+/* SUPPORT */
+.support-card{background:linear-gradient(135deg,var(--lav-l),rgba(155,142,196,.08));border-radius:var(--r);padding:18px;border:1px solid rgba(155,142,196,.2)}
+
+/* MT UTILS */
+.mt8{margin-top:8px}.mt12{margin-top:12px}.mb12{margin-bottom:12px}
+.fs12{font-size:12px}.fw7{font-weight:700}.color-soft{color:var(--ts)}
+.divider{height:1px;background:var(--border);margin:12px 0}
+
+/* ONBOARDING */
+.onboard{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+.ob-logo{font-family:var(--serif);font-size:52px;font-weight:700;background:linear-gradient(135deg,var(--rose),var(--rose-d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;text-align:center}
+.ob-sub{font-size:15px;color:var(--ts);text-align:center;margin-bottom:32px;line-height:1.6}
+.ob-step{display:none;width:100%;max-width:380px}
+.ob-step.active{display:block}
+.ob-title{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--rose-d);margin-bottom:16px;text-align:center}
+.ob-dots{display:flex;gap:6px;justify-content:center;margin:20px 0 0}
+.ob-dot{width:8px;height:8px;border-radius:4px;background:var(--border);transition:var(--trans)}
+.ob-dot.active{background:var(--rose);width:20px}
+
+/* Pregnancy calendar */
+.cal-day.preg-t1{background:rgba(155,142,196,.2);color:var(--lav);font-weight:600;}
+.cal-day.preg-t2{background:rgba(123,174,212,.2);color:var(--sky);font-weight:600;}
+.cal-day.preg-t3{background:rgba(122,158,142,.2);color:var(--sage);font-weight:600;}
+.cal-day.preg-due{background:linear-gradient(135deg,var(--sage),#3A7A6A);color:white;font-weight:800;}
+
+/* ── Calendar day events & notes ── */
+.cal-day{position:relative;cursor:pointer;transition:opacity .15s;}
+.cal-day:active{opacity:.6;}
+.day-dots{position:absolute;bottom:1px;left:0;right:0;display:flex;justify-content:center;gap:1px;}
+.day-dots span{font-size:7px;line-height:1;}
+.cal-day.has-note::after{content:'·';position:absolute;top:1px;right:2px;font-size:10px;color:var(--rose);font-weight:900;}
+/* ── Day panel ── */
+#dayPanel{background:var(--card);border-radius:var(--r2);padding:14px;margin-bottom:10px;border:1.5px solid var(--rose-l);}
+#dayPanel .dp-title{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--rose-d);margin-bottom:8px;}
+#dayPanel .dp-events{font-size:13px;line-height:1.9;margin-bottom:10px;color:var(--ts);}
+#dayPanel textarea{width:100%;min-height:68px;padding:8px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--card2);color:var(--text);font-size:13px;resize:vertical;font-family:var(--sans);box-sizing:border-box;}
+/* ── Supp tabs & partner ── */
+.supp-tab-row{display:flex;gap:8px;margin-bottom:12px;}
+.supp-tab-row .stab{flex:1;padding:8px 4px;font-size:12px;border-radius:10px;border:1.5px solid var(--border);background:var(--card2);color:var(--ts);font-weight:600;cursor:pointer;transition:var(--trans);}
+.supp-tab-row .stab.active{background:var(--rose);color:#fff;border-color:var(--rose);}
+.supp-del{position:absolute;top:3px;right:3px;background:rgba(201,114,122,.15);border:none;border-radius:50%;width:18px;height:18px;font-size:11px;line-height:18px;text-align:center;cursor:pointer;color:var(--rose-d);padding:0;}
+.supp{position:relative;padding-right:22px !important;}
+/* partner supp */
+.p-supp{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--card2);margin-bottom:8px;cursor:pointer;transition:var(--trans);border:1.5px solid transparent;}
+.p-supp.taken{background:linear-gradient(135deg,rgba(90,158,142,.12),rgba(90,158,142,.04));border-color:var(--sage-l);}
+.p-supp .pi{font-size:20px;}
+.p-supp .pn{font-size:13px;font-weight:600;flex:1;}
+.p-supp .pd{font-size:11px;color:var(--ts);}
+.p-supp .pc{font-size:15px;color:var(--sage);}
+</style>
+</head>
+<body>
+
+<!-- ONBOARDING -->
+<div class="onboard" id="onboard">
+  <div class="ob-logo">🌸 Γονιμότητα+</div>
+  <div class="ob-sub">Το ταξίδι σου προς τη μητρότητα<br><em>Your journey to motherhood</em></div>
+
+  <div class="ob-step active" id="ob1">
+    <div class="ob-title">Καλώς ήρθες!</div>
+    <div class="card">
+      <div class="input-group">
+        <label class="label">Όνομα</label>
+        <input class="input" id="ob-name" type="text" placeholder="π.χ. Μαρία">
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="obNext()">Επόμενο →</button>
+  </div>
+
+  <div class="ob-step" id="ob2">
+    <div class="ob-title">Στοιχεία Κύκλου</div>
+    <div class="card">
+      <div class="input-group">
+        <label class="label">Πρώτη μέρα τελευταίας περιόδου</label>
+        <input class="input" id="ob-lp" type="date">
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <label class="label">Διάρκεια κύκλου</label>
+          <input class="input" id="ob-cl" type="number" value="28" min="21" max="45">
+        </div>
+        <div class="input-group">
+          <label class="label">Διάρκεια περιόδου</label>
+          <input class="input" id="ob-pl" type="number" value="5" min="2" max="10">
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="obFinish()">🌸 Ξεκινάμε!</button>
+  </div>
+
+  <div class="ob-dots">
+    <div class="ob-dot active" id="od1"></div>
+    <div class="ob-dot" id="od2"></div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="logo">🌸 Γονιμότητα+</div>
+  <div class="topbar-actions">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="lbel" onclick="setLang('el')">ΕΛ</button>
+      <button class="lang-btn" id="lben" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="icon-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="nav" id="mainNav">
+  <button class="nav-btn active" onclick="showPage('home',this)">
+    <span class="ni">🏠</span><span class="nl" data-el="Αρχή" data-en="Home">Αρχή</span>
+  </button>
+  <button class="nav-btn" onclick="showPage('calendar',this)">
+    <span class="ni">📅</span><span class="nl" data-el="Ημερολόγιο" data-en="Calendar">Ημερολόγιο</span>
+  </button>
+  <button class="nav-btn" onclick="showPage('bbt',this)">
+    <span class="ni">🌡️</span><span class="nl" data-el="Θερμοκρ." data-en="BBT">Θερμοκρ.</span>
+  </button>
+  <button class="nav-btn" onclick="showPage('pregnancy',this)">
+    <span class="ni">🤰</span><span class="nl" data-el="Εγκυμ." data-en="Pregnancy">Εγκυμ.</span>
+  </button>
+  <button class="nav-btn" onclick="showPage('more',this)">
+    <span class="ni">⋯</span><span class="nl" data-el="Άλλα" data-en="More">Άλλα</span>
+  </button>
+</nav>
+
+<div class="app">
+
+<!-- ══════════════════════════════════════════ HOME ══ -->
+<div class="page active" id="page-home">
+  <div class="page-title" id="homeGreeting">Καλημέρα! 🌸</div>
+  <div class="fs12 color-soft mb12" id="homeDate"></div>
+
+  <!-- Phase card -->
+  <div class="phase-banner" id="phaseBanner" style="background:linear-gradient(135deg,var(--rose),var(--rose-d))">
+    <div class="phase-title" id="phaseTitle">—</div>
+    <div class="phase-sub" id="phaseSub"></div>
+    <div class="phase-pct" id="phasePct"></div>
+    <div class="phase-bar"><div class="phase-bar-fill" id="phaseBarFill" style="width:0%"></div></div>
+  </div>
+
+  <!-- Fertile banner -->
+  <div class="fertile-banner" id="fertileBanner">
+    <span style="font-size:28px">🌿</span>
+    <div>
+      <div style="font-weight:700;font-size:15px;" id="fertileBannerText">Γόνιμες μέρες!</div>
+      <div style="font-size:12px;opacity:.85;" id="fertileBannerSub"></div>
+    </div>
+  </div>
+
+  <!-- Countdown -->
+  <div class="countdown" id="countdown" style="display:none">
+    <div class="cd-box">
+      <div class="cd-num" id="cdFertile">—</div>
+      <div class="cd-label" data-el="Έως γόνιμες" data-en="To fertile">Έως γόνιμες</div>
+    </div>
+    <div class="cd-box">
+      <div class="cd-num" id="cdOvul">—</div>
+      <div class="cd-label" data-el="Έως ωορρηξία" data-en="To ovulation">Έως ωορρηξία</div>
+    </div>
+    <div class="cd-box">
+      <div class="cd-num" id="cdPeriod">—</div>
+      <div class="cd-label" data-el="Έως περίοδο" data-en="To period">Έως περίοδο</div>
+    </div>
+  </div>
+
+  <!-- Daily tip -->
+  <div class="tip-card">
+    <div class="tip-emoji">💡</div>
+    <div style="font-size:11px;font-weight:800;color:var(--rose-d);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px" id="tipLabel">💡 Συμβουλή Ημέρας</div>
+    <div class="tip-text" id="dailyTip">Φορτώνω συμβουλή...</div>
+  </div>
+
+  <!-- Symptoms -->
+  <div class="card">
+    <div class="card-title" data-el="📝 Σημερινά Συμπτώματα" data-en="📝 Today's Symptoms">📝 Σημερινά Συμπτώματα</div>
+    <div class="sym-grid">
+      <div class="sym" onclick="toggleSym(this,'fatigue')"><span class="sym-icon">😴</span><span class="sym-name" data-el="Κόπωση" data-en="Fatigue">Κόπωση</span></div>
+      <div class="sym" onclick="toggleSym(this,'cramps')"><span class="sym-icon">🎯</span><span class="sym-name" data-el="Κοιλόπονος" data-en="Cramps">Κοιλόπονος</span></div>
+      <div class="sym" onclick="toggleSym(this,'discharge')"><span class="sym-icon">💧</span><span class="sym-name" data-el="Εκκρίσεις" data-en="Discharge">Εκκρίσεις</span></div>
+      <div class="sym" onclick="toggleSym(this,'breast')"><span class="sym-icon">😣</span><span class="sym-name" data-el="Στήθος" data-en="Breast">Στήθος</span></div>
+      <div class="sym" onclick="toggleSym(this,'nausea')"><span class="sym-icon">🤢</span><span class="sym-name" data-el="Ναυτία" data-en="Nausea">Ναυτία</span></div>
+      <div class="sym" onclick="toggleSym(this,'headache')"><span class="sym-icon">🤕</span><span class="sym-name" data-el="Πονοκέφαλος" data-en="Headache">Πονοκέφαλος</span></div>
+      <div class="sym" onclick="toggleSym(this,'mood')"><span class="sym-icon">😊</span><span class="sym-name" data-el="Διάθεση" data-en="Mood">Διάθεση</span></div>
+      <div class="sym" onclick="toggleSym(this,'spotting')"><span class="sym-icon">🔴</span><span class="sym-name" data-el="Spotting" data-en="Spotting">Spotting</span></div>
+      <div class="sym" onclick="toggleSym(this,'bloating')"><span class="sym-icon">🎈</span><span class="sym-name" data-el="Φούσκωμα" data-en="Bloating">Φούσκωμα</span></div>
+    </div>
+    <button class="btn btn-secondary mt12" onclick="saveSymptoms()">💾 <span data-el="Αποθήκευση" data-en="Save">Αποθήκευση</span></button>
+  </div>
+
+  <!-- Intercourse & Conception -->
+  <div class="card">
+    <div class="card-title" data-el="❤️ Σεξουαλική Επαφή & Πιθανότητα" data-en="❤️ Intercourse & Probability">❤️ Σεξουαλική Επαφή & Πιθανότητα</div>
+    <div class="intercourse-btns">
+      <div class="int-btn unprotected" id="btnUnprot" onclick="logIntercourse('unprotected')">
+        <div class="int-btn-icon">❤️</div>
+        <div class="int-btn-name" data-el="Χωρίς προφύλαξη" data-en="Unprotected">Χωρίς προφύλαξη</div>
+      </div>
+      <div class="int-btn protected" id="btnProt" onclick="logIntercourse('protected')">
+        <div class="int-btn-icon">🛡️</div>
+        <div class="int-btn-name" data-el="Με προφύλαξη" data-en="Protected">Με προφύλαξη</div>
+      </div>
+    </div>
+    <div id="concResult" style="display:none">
+      <div class="conception-banner" id="concBanner">
+        <div class="conc-pct" id="concPct"></div>
+        <div class="conc-label" id="concLabel"></div>
+        <div class="conc-bar-wrap"><div class="conc-bar-fill" id="concBarFill" style="width:0%"></div></div>
+      </div>
+      <div class="conc-detail" id="concDetail"></div>
+    </div>
+    <div id="concNoCycle" class="fs12 color-soft mt8" data-el="Συμπλήρωσε τα στοιχεία κύκλου για να δεις πιθανότητες." data-en="Enter cycle data to see conception probabilities.">Συμπλήρωσε τα στοιχεία κύκλου για να δεις πιθανότητες.</div>
+    <div id="intHistory" class="mt12"></div>
+  </div>
+
+  <!-- Mood -->
+  <div class="card">
+    <div class="card-title" data-el="🎭 Διάθεση Σήμερα" data-en="🎭 Today's Mood">🎭 Διάθεση Σήμερα</div>
+    <div class="mood-row">
+      <button class="mood-btn" onclick="logMood('😢')">😢</button>
+      <button class="mood-btn" onclick="logMood('😕')">😕</button>
+      <button class="mood-btn" onclick="logMood('😐')">😐</button>
+      <button class="mood-btn" onclick="logMood('😊')">😊</button>
+      <button class="mood-btn" onclick="logMood('😍')">😍</button>
+    </div>
+  </div>
+
+  <!-- Supplements -->
+  <div class="card">
+    <div class="card-title" data-el="💊 Συμπληρώματα" data-en="💊 Supplements">💊 Συμπληρώματα</div>
+    <div class="supp-tab-row">
+      <button class="stab active" id="stabMe" onclick="suppTab('me')" data-el="👩 Εγώ" data-en="👩 Me">👩 Εγώ</button>
+      <button class="stab" id="stabPartner" onclick="suppTab('partner')" data-el="👨 Σύντροφος" data-en="👨 Partner">👨 Σύντροφος</button>
+    </div>
+    <!-- MY panel -->
+    <div id="suppPanelMe">
+      <div class="supp-grid" id="suppGrid">
+        <div class="supp" data-key="folic" onclick="toggleSupp(this)"><span class="supp-icon">🟡</span><div><div class="supp-name" data-el="Φυλλικό Οξύ" data-en="Folic Acid">Φυλλικό Οξύ</div><div class="supp-dose">400mcg</div></div><span class="supp-check">○</span><button class="supp-del" onclick="event.stopPropagation();removeBuiltin('folic')">×</button></div>
+        <div class="supp" data-key="vitd" onclick="toggleSupp(this)"><span class="supp-icon">☀️</span><div><div class="supp-name" data-el="Βιταμίνη D" data-en="Vitamin D">Βιταμίνη D</div><div class="supp-dose">1000IU</div></div><span class="supp-check">○</span><button class="supp-del" onclick="event.stopPropagation();removeBuiltin('vitd')">×</button></div>
+        <div class="supp" data-key="omega" onclick="toggleSupp(this)"><span class="supp-icon">🐟</span><div><div class="supp-name" data-el="Ωμέγα-3" data-en="Omega-3">Ωμέγα-3</div><div class="supp-dose">500mg</div></div><span class="supp-check">○</span><button class="supp-del" onclick="event.stopPropagation();removeBuiltin('omega')">×</button></div>
+        <div class="supp" data-key="coq10" onclick="toggleSupp(this)"><span class="supp-icon">🔵</span><div><div class="supp-name">CoQ10</div><div class="supp-dose">200mg</div></div><span class="supp-check">○</span><button class="supp-del" onclick="event.stopPropagation();removeBuiltin('coq10')">×</button></div>
+      </div>
+      <div id="customSuppGrid" class="supp-grid" style="margin-top:8px"></div>
+      <button class="btn btn-secondary mt12" id="addSuppBtn" onclick="openAddSupp('me')" style="border-style:dashed;width:100%">
+        ＋ <span data-el="Προσθήκη δικού μου" data-en="Add my own">Προσθήκη δικού μου</span>
+      </button>
+    </div>
+    <!-- PARTNER panel -->
+    <div id="suppPanelPartner" style="display:none">
+      <div style="background:rgba(90,158,142,.08);border-radius:10px;padding:10px 12px;margin-bottom:10px">
+        <p class="fs12 color-soft" style="line-height:1.7" data-el="Συμπληρώματα που βοηθούν τη γονιμότητα του συντρόφου σου." data-en="Supplements that support your partner's fertility.">Συμπληρώματα που βοηθούν τη γονιμότητα του συντρόφου σου.</p>
+      </div>
+      <div id="partnerSuppGrid"></div>
+      <button class="btn btn-secondary mt8" onclick="openAddSupp('partner')" style="border-style:dashed;width:100%">
+        ＋ <span data-el="Προσθήκη για σύντροφο" data-en="Add for partner">Προσθήκη για σύντροφο</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Add supplement modal trigger area (inline, not modal) -->
+  <div id="addSuppForm" style="display:none;background:var(--card2);border-radius:var(--r2);padding:14px;margin-bottom:12px;border:1.5px dashed var(--rose)">
+    <div class="card-title" id="addSuppTitle" style="margin-bottom:10px" data-el="➕ Νέο Συμπλήρωμα" data-en="➕ New Supplement">➕ Νέο Συμπλήρωμα</div>
+    <div class="input-row" style="margin-bottom:8px">
+      <div class="input-group" style="margin-bottom:0">
+        <label class="label" data-el="Όνομα" data-en="Name">Όνομα</label>
+        <input class="input" id="suppName" type="text" placeholder="π.χ. Μαγνήσιο" style="font-size:14px">
+      </div>
+      <div class="input-group" style="margin-bottom:0">
+        <label class="label" data-el="Δόση" data-en="Dose">Δόση</label>
+        <input class="input" id="suppDose" type="text" placeholder="π.χ. 200mg" style="font-size:14px">
+      </div>
+    </div>
+    <div class="input-group">
+      <label class="label" data-el="Εικονίδιο" data-en="Icon">Εικονίδιο</label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px" id="suppIconPicker">
+        <span class="supp-icon-opt" onclick="selectSuppIcon(this)" style="font-size:24px;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent">💊</span>
+        <span class="supp-icon-opt" onclick="selectSuppIcon(this)" style="font-size:24px;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent">🌿</span>
+        <span class="supp-icon-opt" onclick="selectSuppIcon(this)" style="font-size:24px;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent">🧪</span>
+        <span class="supp-icon-opt" onclick="selectSuppIcon(this)" style="font-size:24px;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent">🫐</span>
+        <span class="supp-icon-opt" onclick="selectSuppIcon(this)" style="font-size:24px;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent">🍃</span>
+        <span class="supp-icon-opt" onclick="selectSuppIcon(this)" style="font-size:24px;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent">⚪</span>
+        <span class="supp-icon-opt" onclick="selectSuppIcon(this)" style="font-size:24px;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent">🟢</span>
+        <span class="supp-icon-opt" onclick="selectSuppIcon(this)" style="font-size:24px;cursor:pointer;padding:4px;border-radius:8px;border:2px solid transparent">🟠</span>
+      </div>
+    </div>
+    <div class="btn-row" style="margin-top:10px">
+      <button class="btn btn-secondary" onclick="closeAddSupp()" data-el="Ακύρωση" data-en="Cancel">Ακύρωση</button>
+      <button class="btn btn-primary" onclick="saveCustomSupp()" data-el="✅ Αποθήκευση" data-en="✅ Save">✅ Αποθήκευση</button>
+    </div>
+  </div>
+
+  <!-- Water -->
+  <div class="card">
+    <div class="card-title" data-el="💧 Ενυδάτωση" data-en="💧 Hydration">💧 Ενυδάτωση</div>
+    <div class="water-row" id="waterRow"></div>
+    <div class="fs12 color-soft mt8" id="waterLabel">0 / 8 ποτήρια</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ CALENDAR ══ -->
+<div class="page" id="page-calendar">
+  <div class="page-title" data-el="📅 Ημερολόγιο" data-en="📅 Calendar">📅 Ημερολόγιο</div>
+  <div class="legend" id="calLegend">
+    <div class="leg-item"><div class="leg-dot" style="background:var(--rose-l);border:2px solid var(--rose)"></div><span data-el="Περίοδος" data-en="Period">Περίοδος</span></div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--sage-l);border:2px solid var(--sage)"></div><span data-el="Γόνιμες" data-en="Fertile">Γόνιμες</span></div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--sage)"></div><span data-el="Ωορρηξία" data-en="Ovulation">Ωορρηξία</span></div>
+    <div class="leg-item"><div class="leg-dot" style="outline:2px solid var(--rose);outline-offset:1px;background:transparent"></div><span data-el="Σήμερα" data-en="Today">Σήμερα</span></div>
+  </div>
+  <div class="legend" id="calPregLegend" style="display:none">
+    <div class="leg-item"><div class="leg-dot" style="background:rgba(155,142,196,.4)"></div><span data-el="1ο Τρίμηνο" data-en="1st Trimester">1ο Τρίμηνο</span></div>
+    <div class="leg-item"><div class="leg-dot" style="background:rgba(123,174,212,.4)"></div><span data-el="2ο Τρίμηνο" data-en="2nd Trimester">2ο Τρίμηνο</span></div>
+    <div class="leg-item"><div class="leg-dot" style="background:rgba(122,158,142,.4)"></div><span data-el="3ο Τρίμηνο" data-en="3rd Trimester">3ο Τρίμηνο</span></div>
+    <div class="leg-item"><div class="leg-dot" style="background:linear-gradient(135deg,var(--sage),#3A7A6A)"></div><span data-el="Τοκετός" data-en="Due date">Τοκετός</span></div>
+  </div>
+  <div class="card">
+    <div class="cal-nav">
+      <button class="cal-nav-btn" onclick="calPrev()">‹</button>
+      <span class="cal-month" id="calMonth"></span>
+      <button class="cal-nav-btn" onclick="calNext()">›</button>
+    </div>
+    <div class="cal-days-header" id="calDaysHeader"></div>
+    <div class="cal-grid" id="calGrid"></div>
+  </div>
+  <!-- Day panel -->
+  <div id="dayPanel" style="display:none">
+    <div class="dp-title" id="dpTitle">📅</div>
+    <div class="dp-events" id="dpEvents"></div>
+    <div style="font-size:12px;font-weight:700;color:var(--rose-d);margin-bottom:6px" data-el="✏️ Προσωπική Σημείωση" data-en="✏️ Personal Note">✏️ Προσωπική Σημείωση</div>
+    <textarea id="dpNote" placeholder="Γράψε κάτι για αυτή τη μέρα..."></textarea>
+    <div class="btn-row" style="margin-top:8px">
+      <button class="btn btn-secondary" onclick="closeDayPanel()" data-el="Κλείσιμο" data-en="Close">Κλείσιμο</button>
+      <button class="btn btn-primary" onclick="saveDayNote()" data-el="💾 Αποθήκευση" data-en="💾 Save">💾 Αποθήκευση</button>
+    </div>
+  </div>
+  <div class="card" id="calPredCard">
+    <div class="card-title" data-el="🔮 Πρόβλεψη 3 Κύκλων" data-en="🔮 3-Cycle Prediction">🔮 Πρόβλεψη 3 Κύκλων</div>
+    <div id="cyclePred"><p class="fs12 color-soft" data-el="Συμπλήρωσε τα στοιχεία κύκλου πρώτα." data-en="Enter cycle data first.">Συμπλήρωσε τα στοιχεία κύκλου πρώτα.</p></div>
+  </div>
+  <div class="card">
+    <div class="card-title" data-el="⚙️ Στοιχεία Κύκλου" data-en="⚙️ Cycle Settings">⚙️ Στοιχεία Κύκλου</div>
+    <div class="input-group">
+      <label class="label" data-el="Τελευταία Περίοδος" data-en="Last Period">Τελευταία Περίοδος</label>
+      <input class="input" id="lastPeriod" type="date" onchange="updateCycle()">
+    </div>
+    <div class="input-row">
+      <div class="input-group">
+        <label class="label" data-el="Κύκλος (μέρες)" data-en="Cycle (days)">Κύκλος (μέρες)</label>
+        <input class="input" id="cycleLen" type="number" value="28" min="21" max="45" onchange="updateCycle()">
+      </div>
+      <div class="input-group">
+        <label class="label" data-el="Περίοδος (μέρες)" data-en="Period (days)">Περίοδος (μέρες)</label>
+        <input class="input" id="periodLen" type="number" value="5" min="2" max="10" onchange="updateCycle()">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ BBT ══ -->
+<div class="page" id="page-bbt">
+  <div class="page-title" data-el="🌡️ Θερμοκρασία BBT" data-en="🌡️ BBT Temperature">🌡️ Θερμοκρασία BBT</div>
+  <div class="card">
+    <div class="card-title" data-el="Καταχώρηση Σήμερα" data-en="Today's Entry">Καταχώρηση Σήμερα</div>
+    <div class="input-row">
+      <div class="input-group">
+        <label class="label" data-el="Ημερομηνία" data-en="Date">Ημερομηνία</label>
+        <input class="input" id="bbtDate" type="date">
+      </div>
+      <div class="input-group">
+        <label class="label" data-el="Θερμοκρασία (°C)" data-en="Temperature (°C)">Θερμοκρασία (°C)</label>
+        <input class="input" id="bbtTemp" type="number" step="0.01" min="35" max="38.5" placeholder="36.50">
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="addBBT()">+ <span data-el="Προσθήκη" data-en="Add">Προσθήκη</span></button>
+  </div>
+  <div class="card">
+    <div class="card-title" data-el="📈 Γράφημα BBT" data-en="📈 BBT Chart">📈 Γράφημα BBT</div>
+    <div class="chart-wrap"><canvas id="bbtCanvas"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title" data-el="📋 Ιστορικό" data-en="📋 History">📋 Ιστορικό</div>
+    <div id="bbtHistory"><p class="fs12 color-soft" data-el="Δεν υπάρχουν καταγραφές ακόμα." data-en="No records yet.">Δεν υπάρχουν καταγραφές ακόμα.</p></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ PREGNANCY ══ -->
+<div class="page" id="page-pregnancy">
+  <div class="page-title" data-el="🤰 Εγκυμοσύνη & Αντισυλληπτικά" data-en="🤰 Pregnancy & Contraceptives">🤰 Εγκυμοσύνη</div>
+  <div class="tabs">
+    <button class="tab active" onclick="pregTab(this,'pt-preg')" data-el="🤰 Εγκυμοσύνη" data-en="🤰 Pregnancy">🤰 Εγκυμοσύνη</button>
+    <button class="tab" onclick="pregTab(this,'pt-pill')" data-el="💊 Αντισυλληπτικά" data-en="💊 Contraceptives">💊 Αντισυλληπτικά</button>
+    <button class="tab" onclick="pregTab(this,'pt-support')" data-el="💜 Υποστήριξη" data-en="💜 Support">💜 Υποστήριξη</button>
+  </div>
+
+  <!-- PREGNANCY TAB -->
+  <div id="pt-preg">
+    <div id="preg-setup">
+      <div class="tip-card" style="border-left-color:var(--lav)">
+        <div class="tip-emoji">🌟</div>
+        <div class="tip-text" data-el="Θετικό τεστ εγκυμοσύνης; Εισήγαγε την πρώτη μέρα της τελευταίας σου περιόδου και θα υπολογίσουμε την πιθανή ημερομηνία τοκετού." data-en="Positive pregnancy test? Enter the first day of your last period and we will calculate your due date.">Θετικό τεστ εγκυμοσύνης; Εισήγαγε την πρώτη μέρα της τελευταίας σου περιόδου.</div>
+      </div>
+      <div class="card">
+        <div class="card-title" data-el="📅 Έναρξη Παρακολούθησης" data-en="📅 Start Tracking">📅 Έναρξη Παρακολούθησης</div>
+        <div class="input-group">
+          <label class="label" data-el="1η μέρα τελευταίας περιόδου" data-en="1st day of last period">1η μέρα τελευταίας περιόδου</label>
+          <input class="input" id="pregLMP" type="date">
+        </div>
+        <button class="btn btn-primary" onclick="startPreg()">🤰 <span data-el="Ξεκίνα Παρακολούθηση" data-en="Start Tracking">Ξεκίνα Παρακολούθηση</span></button>
+      </div>
+    </div>
+
+    <div id="preg-active" style="display:none">
+      <div class="preg-hero">
+        <div style="font-size:13px;opacity:.8;margin-bottom:4px;" data-el="Εβδομάδα Εγκυμοσύνης" data-en="Week of Pregnancy">Εβδομάδα Εγκυμοσύνης</div>
+        <div class="preg-week" id="pregWeek">—</div>
+        <div class="preg-label" id="pregDays"></div>
+        <div class="preg-due" id="pregDue"></div>
+      </div>
+      <div class="card">
+        <div class="card-title" id="pregTrimTitle">1ο Τρίμηνο</div>
+        <div class="tri-segs">
+          <div class="tri-seg tri-t1 on" id="tri1"></div>
+          <div class="tri-seg tri-t2" id="tri2"></div>
+          <div class="tri-seg tri-t3" id="tri3"></div>
+        </div>
+        <div class="tri-labels">
+          <span data-el="1ο (1-12ε)" data-en="1st (1-12w)">1ο (1-12ε)</span>
+          <span data-el="2ο (13-27ε)" data-en="2nd (13-27w)">2ο (13-27ε)</span>
+          <span data-el="3ο (28-40ε)" data-en="3rd (28-40w)">3ο (28-40ε)</span>
+        </div>
+        <div class="preg-progress mt8"><div class="preg-progress-fill" id="pregProgFill" style="width:0%"></div></div>
+        <div class="fs12 color-soft" style="text-align:right;margin-top:4px;" id="pregPct"></div>
+      </div>
+      <div class="card">
+        <div class="card-title" data-el="👶 Ανάπτυξη Αυτή την Εβδομάδα" data-en="👶 This Week's Development">👶 Ανάπτυξη Αυτή την Εβδομάδα</div>
+        <div id="weekMilestone"></div>
+      </div>
+      <div class="card" style="border-color:var(--rose-l)">
+        <div class="card-title" data-el="⚙️ Διαχείριση" data-en="⚙️ Manage">⚙️ Διαχείριση</div>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="endPreg('birth')" style="background:linear-gradient(135deg,var(--sage),#5A8E6E)">👶 <span data-el="Γέννηση!" data-en="Baby born!">Γέννηση!</span></button>
+          <button class="btn btn-secondary" onclick="openMiscarriageModal()" style="color:var(--lav);border-color:var(--lav)">💜 <span data-el="Λήξη" data-en="End tracking">Λήξη</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PILL TAB -->
+  <div id="pt-pill" style="display:none">
+    <div class="card" style="background:linear-gradient(135deg,rgba(232,168,124,.15),rgba(196,122,80,.08));border-color:rgba(232,168,124,.3)">
+      <div style="display:flex;gap:12px;align-items:center">
+        <span style="font-size:36px">💊</span>
+        <div>
+          <div style="font-family:var(--serif);font-size:16px;font-weight:700" data-el="Παρακολούθηση Αντισυλληπτικών" data-en="Contraceptive Tracker">Παρακολούθηση Αντισυλληπτικών</div>
+          <div class="fs12 color-soft mt8" data-el="Υπενθύμιση, κύκλος και παύση" data-en="Reminder, cycle and pause">Υπενθύμιση, κύκλος και παύση</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="pill-setup">
+      <div class="card">
+        <div class="card-title" data-el="Τύπος Αντισυλληπτικού" data-en="Type of Contraceptive">Τύπος Αντισυλληπτικού</div>
+        <div class="pill-type-grid">
+          <div class="pill-type-btn active" onclick="setPillType('combined',this)">
+            <div class="pill-type-icon">💊</div>
+            <div class="pill-type-name" data-el="Συνδυαστικό" data-en="Combined">Συνδυαστικό</div>
+            <div class="pill-type-desc">21+7 μέρες</div>
+          </div>
+          <div class="pill-type-btn" onclick="setPillType('mini',this)">
+            <div class="pill-type-icon">🔵</div>
+            <div class="pill-type-name" data-el="Μίνι χάπι" data-en="Mini pill">Μίνι χάπι</div>
+            <div class="pill-type-desc">28 αδιάκοπα</div>
+          </div>
+          <div class="pill-type-btn" onclick="setPillType('patch',this)">
+            <div class="pill-type-icon">🩹</div>
+            <div class="pill-type-name" data-el="Αυτοκόλλητο" data-en="Patch">Αυτοκόλλητο</div>
+            <div class="pill-type-desc">3ε + 1ε παύση</div>
+          </div>
+          <div class="pill-type-btn" onclick="setPillType('ring',this)">
+            <div class="pill-type-icon">💍</div>
+            <div class="pill-type-name" data-el="Δακτύλιος" data-en="Ring">Δακτύλιος</div>
+            <div class="pill-type-desc">3ε μέσα + 1ε έξω</div>
+          </div>
+        </div>
+        <div class="input-group">
+          <label class="label" data-el="Έναρξη κύκλου" data-en="Cycle start">Έναρξη κύκλου</label>
+          <input class="input" id="pillStart" type="date">
+        </div>
+        <div class="input-group">
+          <label class="label" data-el="Ώρα υπενθύμισης" data-en="Reminder time">Ώρα υπενθύμισης</label>
+          <input class="input" id="pillTime" type="time" value="08:00">
+        </div>
+        <button class="btn btn-primary" onclick="startPill()">💊 <span data-el="Έναρξη Παρακολούθησης" data-en="Start Tracking">Έναρξη Παρακολούθησης</span></button>
+      </div>
+    </div>
+
+    <div id="pill-active" style="display:none">
+      <div class="card">
+        <div class="card-title" id="pillCycleTitle">Τρέχων Κύκλος</div>
+        <div class="fs12 color-soft mb12" id="pillStatus"></div>
+        <div class="pill-strip" id="pillStrip"></div>
+        <div class="legend">
+          <div class="leg-item"><div class="leg-dot" style="background:linear-gradient(135deg,#E8A87C,#C47A50)"></div><span data-el="Λήψη" data-en="Taken">Λήψη</span></div>
+          <div class="leg-item"><div class="leg-dot" style="background:var(--rose-l);border:2px solid var(--rose)"></div><span data-el="Χάθηκε" data-en="Missed">Χάθηκε</span></div>
+          <div class="leg-item"><div class="leg-dot" style="background:var(--sage-l);border:2px solid var(--sage)"></div><span data-el="Παύση" data-en="Pause">Παύση</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title" id="todayPillTitle" data-el="💊 Σήμερα" data-en="💊 Today">💊 Σήμερα</div>
+        <div id="todayPill"></div>
+      </div>
+      <div class="card">
+        <div class="card-title" data-el="⏸️ Παύση" data-en="⏸️ Pause">⏸️ Παύση</div>
+        <div class="infobox warn mb12">
+          <h4 data-el="Πότε να κάνεις παύση;" data-en="When to pause?">Πότε να κάνεις παύση;</h4>
+          <p data-el="Χειρουργείο άνω των 30 λεπτών, μεγάλη ακινησία, σοβαρή ασθένεια ή εγκυμοσύνη." data-en="Surgery over 30 minutes, long immobility, serious illness or pregnancy.">Χειρουργείο άνω των 30 λεπτών, μεγάλη ακινησία, σοβαρή ασθένεια ή εγκυμοσύνη.</p>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="pausePill()" data-el="⏸️ Παύση Σήμερα" data-en="⏸️ Pause Today">⏸️ Παύση Σήμερα</button>
+          <button class="btn btn-secondary" onclick="resumePill()" style="border-color:var(--sage);color:var(--sage)" data-el="▶️ Επανεκκίνηση" data-en="▶️ Resume">▶️ Επανεκκίνηση</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title" data-el="⚠️ Τι κάνω αν ξεχάσω;" data-en="⚠️ What if I forget?">⚠️ Τι κάνω αν ξεχάσω;</div>
+        <div class="infobox safe mb8">
+          <h4 data-el="Έως 12 ώρες αργά" data-en="Up to 12 hours late">Έως 12 ώρες αργά</h4>
+          <p data-el="Πάρε το αμέσως. Η προστασία δεν επηρεάζεται." data-en="Take it immediately. Protection is not affected.">Πάρε το αμέσως. Η προστασία δεν επηρεάζεται.</p>
+        </div>
+        <div class="infobox danger">
+          <h4 data-el="Πάνω από 12 ώρες αργά" data-en="More than 12 hours late">Πάνω από 12 ώρες αργά</h4>
+          <p data-el="Πάρε το αμέσως και χρησιμοποίησε επιπλέον προστασία για 7 μέρες. Αν είχες επαφή, εξέτασε επείγουσα αντισύλληψη." data-en="Take immediately and use extra protection for 7 days. If you had intercourse, consider emergency contraception.">Πάρε το αμέσως και χρησιμοποίησε επιπλέον προστασία για 7 μέρες.</p>
+        </div>
+      </div>
+      <button class="btn btn-secondary mb12" onclick="resetPill()" style="color:var(--rose)" data-el="🔄 Επαναφορά κύκλου" data-en="🔄 Reset cycle">🔄 Επαναφορά κύκλου</button>
+    </div>
+  </div>
+
+  <!-- SUPPORT TAB -->
+  <div id="pt-support" style="display:none">
+
+    <!-- Sub-tabs -->
+    <div class="tabs" style="margin-bottom:14px">
+      <button class="tab active" id="sp-tab-preg" onclick="supportTab(this,'sp-preg')" data-el="🤰 Εγκυμοσύνη" data-en="🤰 Pregnancy">🤰 Εγκυμοσύνη</button>
+      <button class="tab" id="sp-tab-end" onclick="supportTab(this,'sp-end')" data-el="💜 Λήξη" data-en="💜 Loss">💜 Λήξη</button>
+      <button class="tab" id="sp-tab-baby" onclick="supportTab(this,'sp-baby')" data-el="👶 Μωράκι" data-en="👶 Baby">👶 Μωράκι</button>
+    </div>
+
+    <!-- ── ΣΚΕΛΟΣ 1: Ψυχολογικά tips εγκυμοσύνης ── -->
+    <div id="sp-preg">
+      <div class="support-card mb12">
+        <div style="font-size:28px;margin-bottom:8px">🌸</div>
+        <div style="font-family:var(--serif);font-size:17px;font-weight:600;color:var(--rose-d);margin-bottom:8px" data-el="Η εγκυμοσύνη είναι ένα ταξίδι" data-en="Pregnancy is a journey">Η εγκυμοσύνη είναι ένα ταξίδι</div>
+        <p class="fs12 color-soft" style="line-height:1.8" data-el="Κάθε εβδομάδα που περνά είναι ένα δώρο. Είναι φυσιολογικό να νιώθεις χαρά και άγχος μαζί — το σώμα σου κάνει κάτι εκπληκτικό." data-en="Every week that passes is a gift. It is normal to feel joy and anxiety together — your body is doing something extraordinary.">Κάθε εβδομάδα που περνά είναι ένα δώρο. Είναι φυσιολογικό να νιώθεις χαρά και άγχος μαζί — το σώμα σου κάνει κάτι εκπληκτικό.</p>
+      </div>
+      <div class="card">
+        <div class="card-title" data-el="🌱 1ο Τρίμηνο — Τα πρώτα συναισθήματα" data-en="🌱 1st Trimester — First emotions">🌱 1ο Τρίμηνο — Τα πρώτα συναισθήματα</div>
+        <div class="info-item"><div class="info-emoji">💭</div><div><div class="info-h4" data-el="Είναι εντάξει να αγχώνεσαι" data-en="It is okay to feel anxious">Είναι εντάξει να αγχώνεσαι</div><div class="info-p" data-el="Το πρώτο τρίμηνο φέρνει πολλές σκέψεις. Είναι φυσιολογικό — δεν σημαίνει ότι κάτι πάει στραβά. Μίλησε με τον σύντροφό σου, μοιράσου τις ανησυχίες σου." data-en="The first trimester brings many thoughts. It is normal — it does not mean something is wrong. Talk to your partner and share your worries.">Το πρώτο τρίμηνο φέρνει πολλές σκέψεις. Είναι φυσιολογικό — δεν σημαίνει ότι κάτι πάει στραβά.</div></div></div>
+        <div class="info-item"><div class="info-emoji">🛁</div><div><div class="info-h4" data-el="Φρόντισε τον εαυτό σου" data-en="Take care of yourself">Φρόντισε τον εαυτό σου</div><div class="info-p" data-el="Ζεστό μπάνιο, ήσυχη μουσική, ένα καλό βιβλίο. Η αυτοφροντίδα δεν είναι πολυτέλεια τώρα — είναι ανάγκη για σένα και το μωρό." data-en="A warm bath, quiet music, a good book. Self-care is not a luxury right now — it is a need for you and your baby.">Ζεστό μπάνιο, ήσυχη μουσική, ένα καλό βιβλίο. Η αυτοφροντίδα δεν είναι πολυτέλεια τώρα.</div></div></div>
+        <div class="info-item"><div class="info-emoji">🤢</div><div><div class="info-h4" data-el="Η ναυτία θα περάσει" data-en="The nausea will pass">Η ναυτία θα περάσει</div><div class="info-p" data-el="Ξέρουμε ότι είναι δύσκολο. Δεν είναι για πάντα — στους περισσότερους υποχωρεί μετά τη 12η-14η εβδομάδα. Κράκερ, τζίντζερ και μικρά γεύματα βοηθούν." data-en="We know it is hard. It is not forever — for most people it eases after week 12-14. Crackers, ginger and small meals help.">Ξέρουμε ότι είναι δύσκολο. Δεν είναι για πάντα — υποχωρεί μετά τη 12η-14η εβδομάδα.</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title" data-el="☀️ 2ο Τρίμηνο — Η «χρυσή» περίοδος" data-en="☀️ 2nd Trimester — The golden period">☀️ 2ο Τρίμηνο — Η «χρυσή» περίοδος</div>
+        <div class="info-item"><div class="info-emoji">✨</div><div><div class="info-h4" data-el="Αισθάνεσαι τις κινήσεις" data-en="You feel the movements">Αισθάνεσαι τις κινήσεις</div><div class="info-p" data-el="Δεν υπάρχει τίποτα σαν την πρώτη φορά που θα νιώσεις το μωράκι σου να κουνιέται. Είναι μια στιγμή που δεν ξεχνιέται ποτέ." data-en="There is nothing like the first time you feel your baby move. It is a moment you will never forget.">Δεν υπάρχει τίποτα σαν την πρώτη φορά που θα νιώσεις το μωράκι σου να κουνιέται.</div></div></div>
+        <div class="info-item"><div class="info-emoji">💑</div><div><div class="info-h4" data-el="Μοιράσου αυτό το ταξίδι" data-en="Share this journey">Μοιράσου αυτό το ταξίδι</div><div class="info-p" data-el="Πήγαινε μαζί με τον σύντροφό σου στους υπερήχους. Αγγίξτε το στομαχάκι μαζί. Μιλήστε για το όνομα, για τα όνειρα που έχετε." data-en="Go to scans together. Touch the bump together. Talk about names and the dreams you share.">Πήγαινε μαζί με τον σύντροφό σου στους υπερήχους. Μιλήστε για το όνομα, για τα όνειρα που έχετε.</div></div></div>
+        <div class="info-item"><div class="info-emoji">📝</div><div><div class="info-h4" data-el="Κράτα ένα ημερολόγιο εγκυμοσύνης" data-en="Keep a pregnancy journal">Κράτα ένα ημερολόγιο εγκυμοσύνης</div><div class="info-p" data-el="Γράψε πώς νιώθεις, τι σκέφτεσαι. Ένα ημερολόγιο που κάποια μέρα μπορείς να διαβάσεις στο παιδί σου." data-en="Write how you feel, what you think. A journal you can one day read to your child.">Γράψε πώς νιώθεις, τι σκέφτεσαι. Ένα ημερολόγιο που κάποια μέρα μπορείς να διαβάσεις στο παιδί σου.</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title" data-el="🌙 3ο Τρίμηνο — Η αναμονή" data-en="🌙 3rd Trimester — The waiting">🌙 3ο Τρίμηνο — Η αναμονή</div>
+        <div class="info-item"><div class="info-emoji">😴</div><div><div class="info-h4" data-el="Κοιμήσου όσο μπορείς" data-en="Sleep as much as you can">Κοιμήσου όσο μπορείς</div><div class="info-p" data-el="Ο ύπνος γίνεται πιο δύσκολος τώρα. Μαξιλάρι ανάμεσα στα γόνατα, πλαϊνή θέση — δοκίμασε ό,τι σε ανακουφίζει." data-en="Sleep becomes harder now. A pillow between your knees, lying on your side — try whatever brings relief.">Ο ύπνος γίνεται πιο δύσκολος τώρα. Μαξιλάρι ανάμεσα στα γόνατα, πλαϊνή θέση.</div></div></div>
+        <div class="info-item"><div class="info-emoji">🧘</div><div><div class="info-h4" data-el="Άγχος για τον τοκετό" data-en="Anxiety about labour">Άγχος για τον τοκετό</div><div class="info-p" data-el="Είναι απολύτως φυσιολογικό να φοβάσαι. Μίλησε με τη μαία σου, κάνε μαθήματα προετοιμασίας τοκετού. Το σώμα σου ξέρει τι να κάνει." data-en="It is completely normal to feel scared. Talk to your midwife, take birth preparation classes. Your body knows what to do.">Είναι φυσιολογικό να φοβάσαι. Μίλησε με τη μαία σου. Το σώμα σου ξέρει τι να κάνει.</div></div></div>
+        <div class="info-item"><div class="info-emoji">💌</div><div><div class="info-h4" data-el="Γράψε ένα γράμμα στο μωρό" data-en="Write a letter to your baby">Γράψε ένα γράμμα στο μωρό</div><div class="info-p" data-el="Πες του πόσο το περιμένεις, τι ονειρεύεσαι για αυτό. Θα είναι ένας θησαυρός για πάντα." data-en="Tell it how much you are waiting, what you dream for it. It will be a treasure forever.">Πες του πόσο το περιμένεις, τι ονειρεύεσαι για αυτό. Θα είναι ένας θησαυρός για πάντα.</div></div></div>
+      </div>
+    </div>
+
+    <!-- ── ΣΚΕΛΟΣ 2: Λήξη ── -->
+    <div id="sp-end" style="display:none">
+      <div style="display:flex;gap:8px;margin-bottom:14px">
+        <button class="btn btn-secondary" id="btnEndMisc" onclick="endTab('misc')" style="flex:1;padding:10px;border-color:var(--lav);color:var(--lav)" data-el="💜 Αποβολή" data-en="💜 Miscarriage">💜 Αποβολή</button>
+        <button class="btn btn-secondary" id="btnEndTerm" onclick="endTab('term')" style="flex:1;padding:10px" data-el="🌸 Διακοπή" data-en="🌸 Termination">🌸 Διακοπή</button>
+      </div>
+      <div id="sp-end-misc">
+        <div class="support-card mb12" style="background:linear-gradient(135deg,var(--lav-l),rgba(155,142,196,.05));border:1px solid rgba(155,142,196,.2)">
+          <div style="font-size:28px;margin-bottom:10px">💜</div>
+          <div style="font-family:var(--serif);font-size:17px;font-weight:600;color:var(--lav);margin-bottom:10px" data-el="Δεν είσαι μόνη σ' αυτό" data-en="You are not alone in this">Δεν είσαι μόνη σ' αυτό</div>
+          <p class="fs12 color-soft" style="line-height:1.9" data-el="Αυτό που νιώθεις τώρα — ο πόνος, η σύγχυση, ίσως και η ενοχή — όλα αυτά είναι φυσιολογικά. Δεν έκανες τίποτα λάθος. Δεν φταις εσύ. Το σώμα σου δεν σε πρόδωσε — απλώς κάτι δεν ήταν έτοιμο ακόμα." data-en="What you feel right now — the pain, the confusion, perhaps the guilt — all of it is natural. You did nothing wrong. It is not your fault. Your body did not betray you — something simply was not ready yet.">Αυτό που νιώθεις τώρα — ο πόνος, η σύγχυση, ίσως και η ενοχή — όλα αυτά είναι φυσιολογικά. Δεν φταις εσύ.</p>
+        </div>
+        <div class="card">
+          <div class="info-item"><div class="info-emoji">🤍</div><div><div class="info-h4" data-el="Δώσε χρόνο στον εαυτό σου" data-en="Give yourself time">Δώσε χρόνο στον εαυτό σου</div><div class="info-p" data-el="Δεν υπάρχει σωστός τρόπος να νιώθεις και δεν υπάρχει σωστό χρονικό διάστημα για να «ξεπεράσεις» κάτι. Άσε τον εαυτό σου να πενθεί όσο χρειάζεται." data-en="There is no right way to feel and no right amount of time to move through something like this. Let yourself grieve for as long as you need.">Δεν υπάρχει σωστός τρόπος να νιώθεις. Άσε τον εαυτό σου να πενθεί όσο χρειάζεται.</div></div></div>
+          <div class="info-item"><div class="info-emoji">🗣️</div><div><div class="info-h4" data-el="Μίλα — αν θέλεις" data-en="Talk — if you want to">Μίλα — αν θέλεις</div><div class="info-p" data-el="Δεν χρειάζεται να εξηγήσεις σε κανέναν τίποτα. Αλλά αν νιώθεις ότι χρειάζεσαι κάποιον να σε ακούσει, υπάρχουν ψυχολόγοι που ειδικεύονται ακριβώς σε αυτό." data-en="You do not owe anyone an explanation. But if you feel you need someone to listen, there are therapists who specialise in exactly this.">Δεν χρειάζεται να εξηγήσεις σε κανέναν τίποτα. Υπάρχουν ψυχολόγοι που ειδικεύονται ακριβώς σε αυτό.</div></div></div>
+          <div class="info-item"><div class="info-emoji">💑</div><div><div class="info-h4" data-el="Ο σύντροφός σου πονά κι αυτός" data-en="Your partner is hurting too">Ο σύντροφός σου πονά κι αυτός</div><div class="info-p" data-el="Μπορεί να εκφράζει τον πόνο διαφορετικά — ή να μην τον εκφράζει καθόλου. Βρείτε χρόνο να μιλήσετε, να κλάψετε μαζί αν χρειαστεί." data-en="They may express pain differently — or not at all. Find time to talk, to cry together if needed.">Μπορεί να εκφράζει τον πόνο διαφορετικά. Βρείτε χρόνο να μιλήσετε, να κλάψετε μαζί αν χρειαστεί.</div></div></div>
+          <div class="info-item"><div class="info-emoji">🌱</div><div><div class="info-h4" data-el="Όταν νιώσεις έτοιμη" data-en="When you feel ready">Όταν νιώσεις έτοιμη</div><div class="info-p" data-el="Δεν υπάρχει βιασύνη. Όταν εσύ — όχι κάποιος άλλος — νιώσεις ότι είσαι έτοιμη να ξαναπροσπαθήσεις, το σώμα σου θα είναι εκεί." data-en="There is no rush. When you — not anyone else — feel ready to try again, your body will be there.">Δεν υπάρχει βιασύνη. Όταν εσύ νιώσεις έτοιμη, το σώμα σου θα είναι εκεί.</div></div></div>
+          <div class="info-item"><div class="info-emoji">📞</div><div><div class="info-h4" data-el="Είμαστε εδώ" data-en="We are here">Είμαστε εδώ</div><div class="info-p">SOS: <strong>10306</strong> (24h)<br><span data-el="Γραμμή Ζωής" data-en="Lifeline">Γραμμή Ζωής</span>: <strong>1018</strong></div></div></div>
+        </div>
+      </div>
+      <div id="sp-end-term" style="display:none">
+        <div class="support-card mb12" style="background:linear-gradient(135deg,var(--rose-l),rgba(201,114,122,.05));border:1px solid var(--border)">
+          <div style="font-size:28px;margin-bottom:10px">🌸</div>
+          <div style="font-family:var(--serif);font-size:17px;font-weight:600;color:var(--rose-d);margin-bottom:10px" data-el="Η απόφασή σου ήταν δική σου" data-en="Your decision was yours to make">Η απόφασή σου ήταν δική σου</div>
+          <p class="fs12 color-soft" style="line-height:1.9" data-el="Δεν χρωστάς εξηγήσεις σε κανέναν. Πήρες μια απόφαση για τον εαυτό σου, για τη ζωή σου — και αυτό απαιτεί δύναμη. Ό,τι νιώθεις τώρα — ανακούφιση, θλίψη, σύγχυση ή και τα τρία μαζί — όλα είναι έγκυρα." data-en="You owe no one an explanation. You made a decision for yourself, for your life — and that takes strength. Whatever you feel now — relief, sadness, confusion or all three — it is all valid.">Δεν χρωστάς εξηγήσεις σε κανέναν. Ό,τι νιώθεις τώρα — ανακούφιση, θλίψη, σύγχυση — όλα είναι έγκυρα.</p>
+        </div>
+        <div class="card">
+          <div class="info-item"><div class="info-emoji">🤍</div><div><div class="info-h4" data-el="Τα συναισθήματά σου είναι έγκυρα" data-en="Your feelings are valid">Τα συναισθήματά σου είναι έγκυρα</div><div class="info-p" data-el="Δεν υπάρχει «σωστό» συναίσθημα μετά από μια διακοπή. Μπορεί να νιώθεις ανακούφιση και θλίψη την ίδια στιγμή — και αυτό είναι εντελώς εντάξει." data-en="There is no right feeling after a termination. You may feel relief and sadness at the same time — and that is completely okay.">Δεν υπάρχει «σωστό» συναίσθημα. Μπορεί να νιώθεις ανακούφιση και θλίψη μαζί — και αυτό είναι εντελώς εντάξει.</div></div></div>
+          <div class="info-item"><div class="info-emoji">🛡️</div><div><div class="info-h4" data-el="Μην αφήσεις κανέναν να σε κρίνει" data-en="Do not let anyone judge you">Μην αφήσεις κανέναν να σε κρίνει</div><div class="info-p" data-el="Η κριτική από άλλους πονά. Αλλά εσύ ξέρεις την ιστορία σου καλύτερα από οποιονδήποτε άλλον. Η επιλογή σου ήταν δική σου και αξίζει σεβασμό." data-en="Criticism from others hurts. But you know your story better than anyone. Your choice was yours and deserves respect.">Εσύ ξέρεις την ιστορία σου καλύτερα από οποιονδήποτε. Η επιλογή σου αξίζει σεβασμό.</div></div></div>
+          <div class="info-item"><div class="info-emoji">🌿</div><div><div class="info-h4" data-el="Φρόντισε το σώμα σου" data-en="Take care of your body">Φρόντισε το σώμα σου</div><div class="info-p" data-el="Ξεκουράσου, φάε καλά, πίνε νερό. Το σώμα σου χρειάζεται χρόνο να αναρρώσει — δώσε του αυτό που χρειάζεται χωρίς ενοχές." data-en="Rest, eat well, drink water. Your body needs time to recover — give it what it needs without guilt.">Ξεκουράσου, φάε καλά, πίνε νερό. Δώσε στο σώμα σου χρόνο χωρίς ενοχές.</div></div></div>
+          <div class="info-item"><div class="info-emoji">💬</div><div><div class="info-h4" data-el="Αν θέλεις να μιλήσεις" data-en="If you want to talk">Αν θέλεις να μιλήσεις</div><div class="info-p" data-el="Υπάρχουν ψυχολόγοι και ομάδες που σε ακούνε χωρίς κριτική. Δεν χρειάζεται να τα βγάλεις μόνη πέρα αν δεν θέλεις." data-en="There are therapists and groups who listen without judgement. You do not have to go through this alone if you do not want to.">Υπάρχουν ψυχολόγοι που σε ακούνε χωρίς κριτική. Δεν χρειάζεται να τα βγάλεις μόνη πέρα.</div></div></div>
+          <div class="info-item"><div class="info-emoji">☀️</div><div><div class="info-h4" data-el="Μπρος είναι η ζωή σου" data-en="Your life is ahead of you">Μπρος είναι η ζωή σου</div><div class="info-p" data-el="Όταν είσαι έτοιμη, η ζωή σου συνεχίζεται — με τους δικούς σου όρους, στο δικό σου ρυθμό." data-en="When you are ready, your life continues — on your own terms, at your own pace.">Όταν είσαι έτοιμη, η ζωή σου συνεχίζεται — με τους δικούς σου όρους.</div></div></div>
+          <div class="info-item"><div class="info-emoji">📞</div><div><div class="info-h4" data-el="Υποστήριξη" data-en="Support">Υποστήριξη</div><div class="info-p">SOS: <strong>10306</strong> (24h)<br><span data-el="Γραμμή Ζωής" data-en="Lifeline">Γραμμή Ζωής</span>: <strong>1018</strong></div></div></div>
+        </div>
+      </div>
+      <div class="card" style="border-color:var(--lav-l);margin-top:4px">
+        <div class="card-title" style="color:var(--lav)" data-el="🌸 Νέα Αρχή" data-en="🌸 Fresh Start">🌸 Νέα Αρχή</div>
+        <p class="fs12 color-soft mb12" data-el="Όταν εσύ νιώθεις έτοιμη — χωρίς βιασύνη." data-en="When you feel ready — no rush.">Όταν εσύ νιώθεις έτοιμη — χωρίς βιασύνη.</p>
+        <button class="btn btn-primary" onclick="resetPreg()" style="background:linear-gradient(135deg,var(--lav),#7A6EA4)" data-el="💜 Επαναφορά Παρακολούθησης" data-en="💜 Reset Tracking">💜 Επαναφορά Παρακολούθησης</button>
+      </div>
+    </div>
+
+    <!-- ── ΣΚΕΛΟΣ 3: Baby blues & νεογέννητο ── -->
+    <div id="sp-baby" style="display:none">
+      <div class="support-card mb12" style="background:linear-gradient(135deg,rgba(122,174,212,.12),rgba(90,142,180,.05));border:1px solid rgba(122,174,212,.25)">
+        <div style="font-size:32px;margin-bottom:8px">👶</div>
+        <div style="font-family:var(--serif);font-size:17px;font-weight:600;color:var(--sky);margin-bottom:8px" data-el="Καλώς ήρθες, μαμά!" data-en="Welcome, mama!">Καλώς ήρθες, μαμά!</div>
+        <p class="fs12 color-soft" style="line-height:1.9" data-el="Αυτές οι πρώτες μέρες είναι μαγικές και δύσκολες ταυτόχρονα. Το μωράκι σου σε χρειάζεται — αλλά και εσύ χρειάζεσαι φροντίδα. Και τα δύο μπορούν να συνυπάρχουν." data-en="These first days are magical and hard at the same time. Your baby needs you — but you need care too. Both can coexist.">Αυτές οι πρώτες μέρες είναι μαγικές και δύσκολες ταυτόχρονα. Και τα δύο μπορούν να συνυπάρχουν.</p>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--sky)" data-el="🌊 Baby Blues — Τι είναι;" data-en="🌊 Baby Blues — What is it?">🌊 Baby Blues — Τι είναι;</div>
+        <div class="info-item"><div class="info-emoji">💙</div><div><div class="info-h4" data-el="Είναι φυσιολογικό να κλαις" data-en="It is normal to cry">Είναι φυσιολογικό να κλαις</div><div class="info-p" data-el="Τις πρώτες 2-3 εβδομάδες μετά τον τοκετό οι ορμόνες πέφτουν απότομα. Μπορεί να κλαις χωρίς λόγο, να νιώθεις κόπωση βαθιά. Δεν σημαίνει ότι δεν είσαι καλή μαμά." data-en="In the first 2-3 weeks after birth, hormones drop sharply. You may cry for no reason, feel deep exhaustion. It does not mean you are not a good mum.">Τις πρώτες 2-3 εβδομάδες οι ορμόνες πέφτουν απότομα. Δεν σημαίνει ότι δεν είσαι καλή μαμά.</div></div></div>
+        <div class="info-item"><div class="info-emoji">🌙</div><div><div class="info-h4" data-el="Κοιμήσου όταν κοιμάται" data-en="Sleep when the baby sleeps">Κοιμήσου όταν κοιμάται</div><div class="info-p" data-el="Ξέρουμε ότι ακούγεται κλισέ — αλλά είναι αλήθεια. Οι δουλειές του σπιτιού μπορούν να περιμένουν. Ο ύπνος σου δεν μπορεί." data-en="We know it sounds like a cliché — but it is true. The housework can wait. Your sleep cannot.">Οι δουλειές του σπιτιού μπορούν να περιμένουν. Ο ύπνος σου δεν μπορεί.</div></div></div>
+        <div class="info-item"><div class="info-emoji">🗣️</div><div><div class="info-h4" data-el="Αν δεν περνά μετά τις 2-3 εβδομάδες" data-en="If it does not pass after 2-3 weeks">Αν δεν περνά μετά τις 2-3 εβδομάδες</div><div class="info-p" data-el="Αν νιώθεις πολύ βαρύ το σκοτάδι ή δεν βλέπεις να περνά, μίλα στον γιατρό σου. Η επιλόχεια κατάθλιψη είναι συχνή και θεραπεύεται." data-en="If the darkness feels very heavy or you cannot see it lifting, talk to your doctor. Postnatal depression is common and treatable.">Αν νιώθεις πολύ βαρύ το σκοτάδι, μίλα στον γιατρό σου. Η επιλόχεια κατάθλιψη θεραπεύεται.</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title" data-el="🤱 Θηλασμός" data-en="🤱 Breastfeeding">🤱 Θηλασμός</div>
+        <div class="info-item"><div class="info-emoji">💛</div><div><div class="info-h4" data-el="Δεν είναι πάντα εύκολος" data-en="It is not always easy">Δεν είναι πάντα εύκολος</div><div class="info-p" data-el="Ο θηλασμός είναι φυσικός — αλλά δεν σημαίνει ότι έρχεται αυτόματα. Χρειάζεται εξάσκηση και για τους δύο. Μην τα παρατάς αμέσως αν δυσκολεύεσαι." data-en="Breastfeeding is natural — but that does not mean it comes automatically. It takes practice for both of you. Do not give up straight away if you struggle.">Ο θηλασμός είναι φυσικός αλλά χρειάζεται εξάσκηση και για τους δύο. Μην τα παρατάς αμέσως.</div></div></div>
+        <div class="info-item"><div class="info-emoji">🎯</div><div><div class="info-h4" data-el="Σωστή προσκόλληση στο στήθος" data-en="Correct attachment to the breast">Σωστή προσκόλληση στο στήθος</div><div class="info-p" data-el="Το στόμα του μωρού πρέπει να καλύπτει και τη θηλή ΚΑΙ την άλω. Αν πονάει πολύ, κατέβασέ το απαλά με το δάκτυλό σου και ξαναπροσπάθησε." data-en="The baby's mouth must cover both the nipple AND the areola. If it hurts a lot, gently release with your finger and try again.">Το στόμα του μωρού πρέπει να καλύπτει και τη θηλή ΚΑΙ την άλω. Αν πονάει, κατέβασέ το απαλά και ξαναπροσπάθησε.</div></div></div>
+        <div class="info-item"><div class="info-emoji">🥛</div><div><div class="info-h4" data-el="Αν σκληρύνει το στήθος" data-en="If your breast becomes hard">Αν σκληρύνει το στήθος</div><div class="info-p" data-el="Αυτό λέγεται πλήρωση — συμβαίνει συνήθως τις πρώτες μέρες. Θήλασε συχνά, βάλε ζεστές κομπρέσες πριν τον θηλασμό, κρύες μετά. Αν κοκκινίσει και έχεις πυρετό, επικοινώνησε αμέσως με γιατρό — μπορεί να είναι μαστίτιδα." data-en="This is called engorgement — it usually happens in the first days. Feed often, apply warm compresses before feeding and cold after. If it goes red and you have a fever, contact a doctor immediately — it may be mastitis.">Συμβαίνει τις πρώτες μέρες. Θήλασε συχνά, ζεστές κομπρέσες πριν, κρύες μετά. Αν κοκκινίσει με πυρετό — γιατρό αμέσως.</div></div></div>
+        <div class="info-item"><div class="info-emoji">🍼</div><div><div class="info-h4" data-el="Αν δεν βγαίνει αρκετό γάλα" data-en="If not enough milk comes">Αν δεν βγαίνει αρκετό γάλα</div><div class="info-p" data-el="Θήλασε πιο συχνά — ο θηλασμός λειτουργεί με προσφορά και ζήτηση. Βεβαιώσου ότι πίνεις αρκετό νερό. Ένας σύμβουλος θηλασμού μπορεί να κάνει θαύματα." data-en="Feed more often — breastfeeding works on supply and demand. Make sure you drink enough water. A lactation consultant can work wonders.">Θήλασε πιο συχνά — λειτουργεί με προσφορά και ζήτηση. Πίνε αρκετό νερό. Ένας σύμβουλος θηλασμού βοηθά πολύ.</div></div></div>
+        <div class="info-item"><div class="info-emoji">💜</div><div><div class="info-h4" data-el="Αν επιλέξεις να μην θηλάσεις" data-en="If you choose not to breastfeed">Αν επιλέξεις να μην θηλάσεις</div><div class="info-p" data-el="Είναι η επιλογή σου — και είναι σεβαστή. Ένα μωρό που τρέφεται με αγάπη είναι το πιο σημαντικό, ανεξάρτητα από τον τρόπο." data-en="It is your choice — and it is respected. A baby fed with love is what matters most, regardless of how.">Είναι η επιλογή σου και είναι σεβαστή. Ένα μωρό που τρέφεται με αγάπη είναι το πιο σημαντικό.</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title" data-el="👶 Φροντίδα Νεογέννητου" data-en="👶 Newborn Care">👶 Φροντίδα Νεογέννητου</div>
+        <div class="info-item"><div class="info-emoji">🛁</div><div><div class="info-h4" data-el="Το πρώτο μπανάκι" data-en="The first bath">Το πρώτο μπανάκι</div><div class="info-p" data-el="Τα πρώτα 1-2 λεπτά φαίνονται τρομακτικά — αλλά θα το λατρέψεις σύντομα. Νερό χλιαρό (37°C), κράτα το σταθερά με το ένα χέρι, ξεκίνα από το πρόσωπο. Μια φορά την ημέρα αρκεί." data-en="The first minute or two feel terrifying — but you will soon love it. Lukewarm water (37°C), hold firmly with one hand, start from the face. Once a day is enough.">Νερό χλιαρό (37°C), κράτα το σταθερά, ξεκίνα από το πρόσωπο. Μια φορά την ημέρα αρκεί.</div></div></div>
+        <div class="info-item"><div class="info-emoji">🔵</div><div><div class="info-h4" data-el="Ο ομφάλιος λώρος" data-en="The umbilical cord">Ο ομφάλιος λώρος</div><div class="info-p" data-el="Κράτα τον καθαρό και στεγνό — μην τον σκεπάζεις με πάνα. Σκούπισε απαλά με αποστειρωμένη γάζα αν βραχεί. Πέφτει μόνος του σε 7-21 μέρες. Μην τον τραβάς ποτέ." data-en="Keep it clean and dry — do not cover it with the nappy. Wipe gently with sterile gauze if it gets wet. It falls off on its own in 7-21 days. Never pull it.">Κράτα τον καθαρό και στεγνό. Πέφτει μόνος του σε 7-21 μέρες. Μην τον τραβάς ποτέ.</div></div></div>
+        <div class="info-item"><div class="info-emoji">⚠️</div><div><div class="info-h4" data-el="Αν ο ομφάλιος κοκκινίσει" data-en="If the cord area goes red">Αν ο ομφάλιος κοκκινίσει</div><div class="info-p" data-el="Αν γύρω από τη βάση κοκκινίσει, βγάλει υγρό ή μυρίζει άσχημα, επικοινώνησε αμέσως με τον παιδίατρο. Είναι σπάνιο αλλά πρέπει να αντιμετωπιστεί γρήγορα." data-en="If the area around the base goes red, oozes fluid or smells bad, contact your paediatrician immediately. It is rare but needs prompt attention.">Αν κοκκινίσει, βγάλει υγρό ή μυρίζει άσχημα, επικοινώνησε αμέσως με τον παιδίατρο.</div></div></div>
+        <div class="info-item"><div class="info-emoji">😴</div><div><div class="info-h4" data-el="Ύπνος νεογέννητου" data-en="Newborn sleep">Ύπνος νεογέννητου</div><div class="info-p" data-el="Ύπτια θέση (ανάσκελα), σε σκληρό στρώμα, χωρίς μαξιλάρια ή κουβερτούλες στην κούνια. Θερμοκρασία δωματίου 18-20°C." data-en="On the back, on a firm mattress, no pillows or loose blankets in the cot. Room temperature 18-20°C.">Ύπτια θέση, σε σκληρό στρώμα, χωρίς μαξιλάρια. Θερμοκρασία δωματίου 18-20°C.</div></div></div>
+        <div class="info-item"><div class="info-emoji">🆘</div><div><div class="info-h4" data-el="Πότε να καλέσεις ασθενοφόρο" data-en="When to call an ambulance">Πότε να καλέσεις ασθενοφόρο</div><div class="info-p" data-el="Κάλεσε 166 αμέσως αν: το μωρό δεν αναπνέει, έχει πυρετό πάνω από 38°C (στους πρώτους 3 μήνες), είναι αδρανές και δεν αντιδρά, έχει σπασμούς ή δυσκολία αναπνοής." data-en="Call 166 immediately if: the baby is not breathing, has a fever above 38°C (in the first 3 months), is unresponsive, has seizures or difficulty breathing.">Κάλεσε <strong>166</strong>: μωρό που δεν αναπνέει, πυρετός πάνω από 38°C (πρώτοι 3 μήνες), σπασμοί, αδυναμία αντίδρασης.</div></div></div>
+        <div class="info-item"><div class="info-emoji">🫁</div><div><div class="info-h4" data-el="Αν φτύσει γάλα ή πνιγεί" data-en="If the baby spits up or chokes">Αν φτύσει γάλα ή πνιγεί</div><div class="info-p" data-el="Είναι πολύ συνηθισμένο — σχεδόν όλα τα νεογέννητα φτύνουν λίγο γάλα μετά το τάισμα. Κράτα το όρθιο 15-20 λεπτά μετά. Αν συμβεί κατά τη διάρκεια ύπνου, στρέψε το απαλά στο πλάι. Αν βήχει συνεχόμενα ή αλλάζει χρώμα, κάλεσε αμέσως το 166." data-en="Very common — almost all newborns spit up a little after feeding. Keep upright for 15-20 minutes after. If it happens during sleep, gently turn to the side. If coughing continuously or changing colour, call 166 immediately.">Πολύ συνηθισμένο. Κράτα το όρθιο 15-20 λεπτά μετά το τάισμα. Αν βήχει συνεχόμενα ή αλλάζει χρώμα, κάλεσε το 166.</div></div></div>
+      </div>
+      <div class="card" style="background:linear-gradient(135deg,rgba(122,174,212,.1),rgba(201,114,122,.05));border:none">
+        <div style="text-align:center;padding:8px">
+          <div style="font-size:32px;margin-bottom:8px">🌸</div>
+          <div style="font-family:var(--serif);font-size:16px;font-weight:600;color:var(--rose-d);margin-bottom:8px" data-el="Κάνεις εκπληκτική δουλειά" data-en="You are doing an amazing job">Κάνεις εκπληκτική δουλειά</div>
+          <p class="fs12 color-soft" style="line-height:1.9" data-el="Το μωράκι σου δεν χρειάζεται μια τέλεια μαμά. Χρειάζεται εσένα — την αληθινή σου, με την αγάπη σου. Και αυτή η αγάπη είναι ήδη αρκετή." data-en="Your baby does not need a perfect mum. It needs you — the real you, with your love. And that love is already enough.">Το μωράκι σου δεν χρειάζεται μια τέλεια μαμά. Χρειάζεται εσένα — και αυτή η αγάπη είναι ήδη αρκετή.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<!-- ══════════════════════════════════════════ MORE ══ -->
+<div class="page" id="page-more">
+  <div class="page-title" data-el="⋯ Άλλα" data-en="⋯ More">⋯ Άλλα</div>
+  <div class="tabs">
+    <button class="tab active" onclick="moreTab(this,'mt-tips')" data-el="💡 Tips" data-en="💡 Tips">💡 Tips</button>
+    <button class="tab" onclick="moreTab(this,'mt-rem')" data-el="🔔 Υπενθυμίσεις" data-en="🔔 Reminders">🔔 Υπενθυμίσεις</button>
+    <button class="tab" onclick="moreTab(this,'mt-quiz')" data-el="🧠 Quiz" data-en="🧠 Quiz">🧠 Quiz</button>
+    <button class="tab" onclick="moreTab(this,'mt-nutr')" data-el="🥗 Διατροφή" data-en="🥗 Nutrition">🥗 Διατροφή</button>
+  </div>
+
+  <div id="mt-tips">
+    <div class="card">
+      <div class="card-title" data-el="✨ Όλες οι Συμβουλές" data-en="✨ All Tips">✨ Όλες οι Συμβουλές</div>
+      <div id="allTips"></div>
+    </div>
+  </div>
+
+  <div id="mt-rem" style="display:none">
+    <div class="card">
+      <div class="card-title" data-el="🔔 Υπενθυμίσεις" data-en="🔔 Reminders">🔔 Υπενθυμίσεις</div>
+      <div class="toggle-row"><div class="toggle-info"><h4 data-el="Φυλλικό οξύ" data-en="Folic acid">Φυλλικό οξύ</h4><p data-el="Καθημερινά πρωί" data-en="Every morning">Καθημερινά πρωί</p></div><button class="toggle-switch" onclick="this.classList.toggle('on')"></button></div>
+      <div class="toggle-row"><div class="toggle-info"><h4 data-el="Θερμοκρασία BBT" data-en="BBT temperature">Θερμοκρασία BBT</h4><p data-el="Κάθε πρωί πριν σηκωθείς" data-en="Every morning before rising">Κάθε πρωί πριν σηκωθείς</p></div><button class="toggle-switch" onclick="this.classList.toggle('on')"></button></div>
+      <div class="toggle-row"><div class="toggle-info"><h4 data-el="Αντισυλληπτικό χάπι" data-en="Contraceptive pill">Αντισυλληπτικό χάπι</h4><p data-el="Καθημερινά ίδια ώρα — κρίσιμο!" data-en="Daily same time — critical!">Καθημερινά ίδια ώρα — κρίσιμο!</p></div><button class="toggle-switch on" onclick="this.classList.toggle('on')"></button></div>
+      <div class="toggle-row"><div class="toggle-info"><h4 data-el="Τεστ ωορρηξίας" data-en="Ovulation test">Τεστ ωορρηξίας</h4><p data-el="Από ημέρα 10 του κύκλου" data-en="From day 10 of cycle">Από ημέρα 10 του κύκλου</p></div><button class="toggle-switch" onclick="this.classList.toggle('on')"></button></div>
+      <div class="toggle-row"><div class="toggle-info"><h4 data-el="Ενυδάτωση" data-en="Hydration">Ενυδάτωση</h4><p data-el="8 ποτήρια νερό" data-en="8 glasses of water">8 ποτήρια νερό</p></div><button class="toggle-switch" onclick="this.classList.toggle('on')"></button></div>
+      <div class="toggle-row"><div class="toggle-info"><h4 data-el="Αρχή νέου κύκλου χαπιού" data-en="New pill cycle start">Αρχή νέου κύκλου χαπιού</h4><p data-el="Μετά από παύση 7 ημερών" data-en="After 7-day pause">Μετά από παύση 7 ημερών</p></div><button class="toggle-switch" onclick="this.classList.toggle('on')"></button></div>
+    </div>
+  </div>
+
+  <div id="mt-quiz" style="display:none">
+    <div class="card">
+      <div class="card-title" data-el="🧠 Quiz Γονιμότητας" data-en="🧠 Fertility Quiz">🧠 Quiz Γονιμότητας</div>
+      <div class="quiz-prog"><div class="quiz-prog-fill" id="quizProgFill" style="width:0%"></div></div>
+      <div id="quizContainer"></div>
+    </div>
+  </div>
+
+  <div id="mt-nutr" style="display:none">
+    <div class="card">
+      <div class="card-title" data-el="🥗 Τρόφιμα που Βοηθούν" data-en="🥗 Foods that Help">🥗 Τρόφιμα που Βοηθούν</div>
+      <div class="info-item"><div class="info-emoji">🥬</div><div><div class="info-h4" data-el="Σκούρα φυλλώδη λαχανικά" data-en="Dark leafy greens">Σκούρα φυλλώδη λαχανικά</div><div class="info-p" data-el="Σπανάκι, ρόκα, μαρούλι — γεμάτα φυλλικό οξύ που είναι απαραίτητο πριν και κατά τη σύλληψη." data-en="Spinach, rocket, lettuce — full of folate, essential before and during conception.">Σπανάκι, ρόκα — γεμάτα φυλλικό οξύ.</div></div></div>
+      <div class="info-item"><div class="info-emoji">🐟</div><div><div class="info-h4" data-el="Λιπαρά ψάρια" data-en="Fatty fish">Λιπαρά ψάρια</div><div class="info-p" data-el="Σολομός, σαρδέλες, τσιπούρα — πλούσια σε ωμέγα-3 που βοηθά την ωογένεση και ρυθμίζει τις ορμόνες." data-en="Salmon, sardines — rich in omega-3 that supports egg development and hormone regulation.">Σολομός, σαρδέλες — πλούσια σε ωμέγα-3.</div></div></div>
+      <div class="info-item"><div class="info-emoji">🥑</div><div><div class="info-h4" data-el="Αβοκάντο" data-en="Avocado">Αβοκάντο</div><div class="info-p" data-el="Μονοακόρεστα λιπαρά που υποστηρίζουν υγιή επίπεδα ορμονών. Εξαιρετικό superfood γονιμότητας." data-en="Monounsaturated fats that support healthy hormone levels. An excellent fertility superfood.">Υγιεινά λιπαρά, υποστηρίζει ορμόνες.</div></div></div>
+      <div class="info-item"><div class="info-emoji">🥚</div><div><div class="info-h4" data-el="Αυγά" data-en="Eggs">Αυγά</div><div class="info-p" data-el="Πλούσια σε πρωτεΐνη, χολίνη και βιταμίνη D. Βοηθούν στην ποιότητα των ωαρίων." data-en="Rich in protein, choline and vitamin D. Support egg quality.">Χολίνη, βιταμίνη D — υποστηρίζουν την ποιότητα ωαρίων.</div></div></div>
+      <div class="info-item"><div class="info-emoji">🫘</div><div><div class="info-h4" data-el="Όσπρια" data-en="Legumes">Όσπρια</div><div class="info-p" data-el="Φακές, ρεβίθια, φασόλια — πλούσια σε φυτική πρωτεΐνη και σίδηρο." data-en="Lentils, chickpeas, beans — rich in plant protein and iron.">Φακές, ρεβίθια — φυτική πρωτεΐνη και σίδηρος.</div></div></div>
+    </div>
+    <div class="card">
+      <div class="card-title" data-el="🚫 Τι να Αποφύγεις" data-en="🚫 What to Avoid">🚫 Τι να Αποφύγεις</div>
+      <div class="info-item"><div class="info-emoji">🍺</div><div><div class="info-h4" data-el="Αλκοόλ" data-en="Alcohol">Αλκοόλ</div><div class="info-p" data-el="Ακόμα και μέτρια κατανάλωση μπορεί να επηρεάσει τη γονιμότητα. Ιδανικά αποφυγή τελείως." data-en="Even moderate consumption can affect fertility. Ideally avoid completely.">Ακόμα και μέτρια κατανάλωση επηρεάζει τη γονιμότητα.</div></div></div>
+      <div class="info-item"><div class="info-emoji">☕</div><div><div class="info-h4" data-el="Υπερβολική καφεΐνη" data-en="Excessive caffeine">Υπερβολική καφεΐνη</div><div class="info-p" data-el="Έως 200 χλγρ ημερησίως — περίπου 1 έως 2 καφέδες. Παραπάνω συνδέεται με μειωμένη γονιμότητα." data-en="Up to 200 mg daily — about 1 to 2 coffees. More is linked to reduced fertility.">Έως 200 χλγρ ημερησίως (1-2 καφέδες).</div></div></div>
+      <div class="info-item"><div class="info-emoji">🚬</div><div><div class="info-h4" data-el="Κάπνισμα" data-en="Smoking">Κάπνισμα</div><div class="info-p" data-el="Μειώνει σημαντικά τη γονιμότητα και αυξάνει τον κίνδυνο αποβολής. Διακοπή το συντομότερο." data-en="Significantly reduces fertility and increases miscarriage risk. Stop as soon as possible.">Μειώνει γονιμότητα, αυξάνει κίνδυνο αποβολής.</div></div></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .app -->
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- MISCARRIAGE MODAL -->
+<div class="modal-overlay" id="miscarriageModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <button class="modal-close" onclick="closeModal('miscarriageModal')">✕</button>
+    <div class="modal-title" style="color:var(--lav)">💜 Λήξη Εγκυμοσύνης</div>
+    <p class="fs12 color-soft mb12" data-el="Λυπούμαστε πολύ. Η παρακολούθηση θα σταματήσει. Τα δεδομένα σου αποθηκεύονται." data-en="We are deeply sorry. Tracking will stop. Your data is saved.">Λυπούμαστε πολύ. Η παρακολούθηση θα σταματήσει.</p>
+    <div class="input-group">
+      <label class="label" data-el="Αιτία λήξης" data-en="Reason">Αιτία λήξης</label>
+      <select class="input" id="endReason">
+        <option value="miscarriage" data-el="Αποβολή" data-en="Miscarriage">Αποβολή</option>
+        <option value="stillbirth" data-el="Ενδομήτριος θάνατος" data-en="Stillbirth">Ενδομήτριος θάνατος</option>
+        <option value="termination" data-el="Διακοπή εγκυμοσύνης" data-en="Termination">Διακοπή εγκυμοσύνης</option>
+        <option value="other" data-el="Άλλο" data-en="Other">Άλλο</option>
+      </select>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="closeModal('miscarriageModal')">Ακύρωση</button>
+      <button class="btn btn-primary" onclick="endPreg('miscarriage')" style="background:linear-gradient(135deg,var(--lav),#7A6EA4)">💜 Επιβεβαίωση</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+// ── STATE ──────────────────────────────────────────────────────
+var lang = 'el';
+var isDark = false;
+var cycleData = null;
+var bbtData = [];
+var bbtChart = null;
+var waterCount = 0;
+var intercourseLog = [];
+var pregnancyData = null;
+var pillData = null;
+var pillType = 'combined';
+var quizIdx = 0;
+var quizScore = 0;
+var calDate = new Date();
+var todaySymptoms = {};
+var dayNotes = {};      // 'YYYY-MM-DD' -> string
+var dayEvents = {};     // 'YYYY-MM-DD' -> array of emoji strings
+var selectedDay = null;
+
+// ── DATA ───────────────────────────────────────────────────────
+var MOS_EL = ['Ιανουάριος','Φεβρουάριος','Μάρτιος','Απρίλιος','Μάιος','Ιούνιος','Ιούλιος','Αύγουστος','Σεπτέμβριος','Οκτώβριος','Νοέμβριος','Δεκέμβριος'];
+var MOS_EN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var DAYS_EL = ['Κυρ','Δευ','Τρι','Τετ','Πεμ','Παρ','Σαβ'];
+var DAYS_EN = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+var TIPS = {
+  el: {
+    morning: [
+      "Η μέτρηση της θερμοκρασίας το πρωί πριν σηκωθείς από το κρεβάτι δίνει τα πιο ακριβή αποτελέσματα.",
+      "Ξεκίνα τη μέρα σου με ένα ποτήρι νερό. Ο οργανισμός αφυδατώνεται κατά τη διάρκεια του ύπνου.",
+      "Αν παίρνεις αντισυλληπτικό χάπι, η πρωία είναι η ιδανική ώρα — διατήρησε την ίδια ώρα κάθε μέρα.",
+      "Φολικό οξύ με το πρωινό σου — βοηθάει και η απορρόφηση είναι καλύτερη μαζί με φαγητό.",
+      "Πώς κοιμήθηκες; Ο ύπνος επηρεάζει άμεσα τις ορμόνες σου — προσπάθησε να πηγαίνεις νωρίς.",
+      "Καλημέρα! Σήμερα είναι μια νέα ευκαιρία — κάθε κύκλος ξεκινά με ελπίδα.",
+    ],
+    afternoon: [
+      "Μέσα στη μέρα θυμήσου να πίνεις νερό — ο στόχος είναι 8 ποτήρια ως το βράδυ.",
+      "Μια ήπια βόλτα 20-30 λεπτών μετά το μεσημεριανό βοηθά στη ρύθμιση των ορμονών και μειώνει το στρες.",
+      "Αν νιώθεις κόπωση το απόγευμα, ίσως χρειάζεσαι περισσότερο σίδηρο — ρώτα τον γιατρό σου.",
+      "Μια χούφτα αμύγδαλα ή καρύδια ως σνακ φέρνει βιταμίνη Ε και υγιεινά λιπαρά — καλά για τα ωάρια.",
+      "Αποφυγή μεγάλων ποσοτήτων καφέ το απόγευμα — επηρεάζει τον ύπνο που είναι τόσο σημαντικός.",
+      "Πώς νιώθεις σήμερα; Άκου το σώμα σου — είναι ο καλύτερος οδηγός σου.",
+    ],
+    evening: [
+      "Καλησπέρα! Αν έχεις τεστ ωορρηξίας, το βράδυ μπορεί να δώσει αποτελέσματα — αλλά το μεσημέρι είναι πιο αξιόπιστο.",
+      "Ένα ζεστό αφέψημα τζίντζερ ή χαμομήλι το βράδυ χαλαρώνει και βοηθά στη μείωση του στρες.",
+      "Πριν κοιμηθείς, σκέψου κάτι που σε ευχαρίστησε σήμερα — το θετικό μυαλό επηρεάζει και τη φυσιολογία.",
+      "Απόφυγε την έντονη γυμναστική αργά το βράδυ κατά τη γόνιμη περίοδο — προτίμησε ήπιο διατατικό.",
+      "Η μελατονίνη παράγεται μόνο στο σκοτάδι — άσε το κινητό τουλάχιστον 30 λεπτά πριν τον ύπνο.",
+      "Ξεκουράσου καλά απόψε. Ο οργανισμός σου κάνει τη δουλειά του ακόμα και όταν κοιμάσαι. 🌙",
+    ]
+  },
+  en: {
+    morning: [
+      "Taking your temperature first thing in the morning, before getting up, gives the most accurate results.",
+      "Start your day with a glass of water. Your body dehydrates during sleep.",
+      "If you take a contraceptive pill, morning is the ideal time — keep the same time every day.",
+      "Folic acid with breakfast — absorption is better with food.",
+      "How did you sleep? Sleep directly affects your hormones — try to go to bed early.",
+      "Good morning! Today is a new opportunity — every cycle begins with hope.",
+    ],
+    afternoon: [
+      "Remember to drink water throughout the day — the goal is 8 glasses by evening.",
+      "A gentle 20-30 minute walk after lunch helps regulate hormones and reduces stress.",
+      "If you feel tired in the afternoon, you may need more iron — ask your doctor.",
+      "A handful of almonds or walnuts as a snack brings vitamin E and healthy fats — good for eggs.",
+      "Avoid large amounts of coffee in the afternoon — it affects your sleep, which is so important.",
+      "How are you feeling today? Listen to your body — it is your best guide.",
+    ],
+    evening: [
+      "Good evening! If you have an ovulation test, evening can give results — but midday is more reliable.",
+      "A warm ginger or chamomile tea in the evening is relaxing and helps reduce stress.",
+      "Before you sleep, think of something that made you happy today — a positive mindset affects physiology too.",
+      "Avoid intense exercise late at night during your fertile window — prefer gentle stretching.",
+      "Melatonin is only produced in darkness — put your phone down at least 30 minutes before sleep.",
+      "Rest well tonight. Your body is doing its work even while you sleep. 🌙",
+    ]
+  }
+};
+
+var QUIZZ = [
+  {
+    q:{el:"Πόσες ώρες ζει το ωάριο μετά την ωορρηξία;",en:"How long does the egg survive after ovulation?"},
+    opts:{el:["6-8 ώρες","12-24 ώρες","48-72 ώρες","5-7 μέρες"],en:["6-8 hours","12-24 hours","48-72 hours","5-7 days"]},
+    correct:1,
+    exp:{el:"Το ωάριο ζει μόνο 12-24 ώρες. Γι' αυτό η επαφή πριν από την ωορρηξία έχει τις μεγαλύτερες πιθανότητες — το σπέρμα περιμένει έτοιμο.",en:"The egg survives only 12-24 hours. That is why intercourse before ovulation has the highest chances — sperm waits ready."}
+  },
+  {
+    q:{el:"Πόσες μέρες μπορεί να ζήσει το σπέρμα μέσα στο γυναικείο σώμα;",en:"How many days can sperm survive inside the female body?"},
+    opts:{el:["12-24 ώρες","1-2 μέρες","3-5 μέρες","7-10 μέρες"],en:["12-24 hours","1-2 days","3-5 days","7-10 days"]},
+    correct:2,
+    exp:{el:"Το σπέρμα μπορεί να ζήσει 3-5 μέρες. Γι' αυτό μια επαφή 2-3 μέρες πριν την ωορρηξία μπορεί κάλλιστα να οδηγήσει σε σύλληψη.",en:"Sperm can survive 3-5 days. That is why intercourse 2-3 days before ovulation can absolutely lead to conception."}
+  },
+  {
+    q:{el:"Πότε πρέπει ιδανικά να αρχίσεις να παίρνεις φυλλικό οξύ;",en:"When should you ideally start taking folic acid?"},
+    opts:{el:["Μόλις μάθεις ότι είσαι έγκυος","Έναν μήνα πριν","Τρεις μήνες πριν","Έξι μήνες πριν"],en:["When you find out you're pregnant","One month before","Three months before","Six months before"]},
+    correct:2,
+    exp:{el:"Ιδανικά 3 μήνες πριν τη σύλληψη. Χρειάζεται χρόνο να συσσωρευτεί και προστατεύει τον νωτιαίο σωλήνα του μωρού.",en:"Ideally 3 months before conception. It needs time to build up and protects the baby's neural tube."}
+  },
+  {
+    q:{el:"Ποιο σημάδι δείχνει ότι πλησιάζει η ωορρηξία;",en:"Which sign suggests ovulation is approaching?"},
+    opts:{el:["Πυκνές λευκές εκκρίσεις","Διαφανείς ελαστικές εκκρίσεις","Ελάχιστες εκκρίσεις","Κίτρινες εκκρίσεις"],en:["Thick white discharge","Clear stretchy discharge","Minimal discharge","Yellow discharge"]},
+    correct:1,
+    exp:{el:"Διαφανείς, ελαστικές εκκρίσεις σαν ασπράδι αυγού είναι το καλύτερο φυσικό σημάδι γονιμότητας. Το σώμα σου σου μιλάει!",en:"Clear, stretchy egg-white discharge is the best natural fertility sign. Your body is talking to you!"}
+  },
+  {
+    q:{el:"Πόση καφεΐνη συνιστάται όταν προσπαθείς να μείνεις έγκυος;",en:"How much caffeine is recommended when trying to conceive?"},
+    opts:{el:["Καθόλου","Έως 200 χλγρ την ημέρα","Έως 400 χλγρ την ημέρα","Δεν έχει σημασία"],en:["None at all","Up to 200 mg per day","Up to 400 mg per day","Does not matter"]},
+    correct:1,
+    exp:{el:"Έως 200 χλγρ ημερησίως — περίπου 1-2 καφέδες. Περισσότερο έχει συνδεθεί με μειωμένη γονιμότητα κατά έως 27%.",en:"Up to 200 mg per day — about 1-2 coffees. More has been linked to up to 27% reduced fertility."}
+  }
+];
+
+var MILESTONES = {
+  el:{
+    4:{baby:"Το μωράκι σου είναι μόλις όσο ένας σπόρος παπαρούνας 🌸",mom:"Ίσως νιώθεις λίγη κόπωση ή ναυτία — είναι φυσιολογικό. Ξεκίνα αμέσως φυλλικό οξύ."},
+    6:{baby:"Η καρδιά χτυπά ήδη! 🫘 Μέγεθος φακής.",mom:"Η ναυτία μπορεί να είναι έντονη — φάε μικρές ποσότητες συχνά. Κράκερ το πρωί βοηθάει."},
+    8:{baby:"Σχηματίζονται τα δάχτυλα! 🍓 Μέγεθος φράουλας.",mom:"Ώρα για την πρώτη επίσκεψη στον μαιευτήρα σου — και ίσως τον πρώτο υπέρηχο."},
+    10:{baby:"Κινείται! 🍓 Μέγεθος φράουλας.",mom:"Μετά την 10η εβδομάδα ο κίνδυνος αποβολής μειώνεται σημαντικά."},
+    12:{baby:"Αναγνωρίσιμα ανθρώπινα χαρακτηριστικά! 🫐 Μέγεθος δαμάσκηνου.",mom:"Τέλος πρώτου τριμήνου — μπράβο! Η ναυτία συνήθως υποχωρεί τώρα."},
+    16:{baby:"Το μωράκι σου ακούει! 🥑 Μέγεθος αβοκάντο.",mom:"Σύντομα μπορείς να μάθεις το φύλο, αν θες."},
+    20:{baby:"Νιώθεις τις πρώτες κινήσεις! 🍌 Μέγεθος μπανάνας.",mom:"Γίνεται ο αναλυτικός υπέρηχος — λεπτομερής έλεγχος ανατομίας."},
+    24:{baby:"Τα βλέφαρα έχουν σχηματιστεί 🌽 Μέγεθος καλαμποκιού.",mom:"Γίνεται το τεστ ανοχής γλυκόζης. Μην το αγνοήσεις."},
+    28:{baby:"Ανοίγει τα ματάκια! 🍆 Μέγεθος μελιτζάνας.",mom:"Αρχίζει το τρίτο τρίμηνο. Οι επισκέψεις γίνονται πιο συχνές."},
+    32:{baby:"Οι πνεύμονες αναπτύσσονται 🍍 Μέγεθος ανανά.",mom:"Μπορεί να δυσκολεύεσαι να πάρεις βαθιές αναπνοές — το μωρό πιέζει το διάφραγμα. Είναι κανονικό."},
+    36:{baby:"Σχεδόν έτοιμο! 🍈 Μέγεθος πεπονιού.",mom:"Εβδομαδιαίες επισκέψεις από εδώ και πέρα."},
+    38:{baby:"Πλήρης ωρίμανση! 🌟 Το μωράκι είναι έτοιμο.",mom:"Ο τοκετός μπορεί να ξεκινήσει ανά πάσα στιγμή. Έχεις την τσάντα σου;"},
+    40:{baby:"Ήρθε η ώρα! 👶",mom:"Σήμερα είναι η πιθανή ημερομηνία τοκετού. Επικοινώνησε με τον μαιευτήρα σου."}
+  },
+  en:{
+    4:{baby:"Your baby is the size of a poppy seed 🌸",mom:"You may feel some fatigue or nausea — completely normal. Start folic acid right away."},
+    6:{baby:"The heart is beating! 🫘 Size of a lentil.",mom:"Nausea can be intense — eat small amounts frequently. Crackers in the morning help."},
+    8:{baby:"Fingers are forming! 🍓 Size of a strawberry.",mom:"Time for your first midwife appointment — and maybe your first scan."},
+    10:{baby:"It's moving! 🍓 Size of a strawberry.",mom:"After week 10, miscarriage risk drops significantly. You can breathe a little easier."},
+    12:{baby:"Recognisable human features! 🫐 Size of a plum.",mom:"End of the first trimester — well done! Nausea usually eases now."},
+    16:{baby:"Your baby can hear! 🥑 Size of an avocado.",mom:"You may find out the sex soon, if you'd like."},
+    20:{baby:"You feel the first movements! 🍌 Size of a banana.",mom:"The detailed anatomy scan happens around now."},
+    24:{baby:"Eyelids have formed 🌽 Size of an ear of corn.",mom:"The glucose tolerance test is done around this time. Do not skip it."},
+    28:{baby:"Opening its little eyes! 🍆 Size of an aubergine.",mom:"Third trimester begins. Visits become more frequent."},
+    32:{baby:"Lungs developing 🍍 Size of a pineapple.",mom:"You may find it hard to take deep breaths — the baby is pressing on your diaphragm. Completely normal."},
+    36:{baby:"Almost ready! 🍈 Size of a melon.",mom:"Weekly visits from here on."},
+    38:{baby:"Fully mature! 🌟 Your baby is ready.",mom:"Labour could begin at any moment. Is your bag packed?"},
+    40:{baby:"It's time! 👶",mom:"Today is your estimated due date. Contact your midwife."}
+  }
+};
+
+var CONC_PROBS = {"-5":10,"-4":14,"-3":16,"-2":27,"-1":31,"0":33,"1":12,"2":5,"3":2};
+
+// ── HELPERS ────────────────────────────────────────────────────
+function el(id){return document.getElementById(id);}
+function toast(msg){var t=el('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2500);}
+function closeModal(id){el(id).classList.remove('open');}
+
+// ── LANGUAGE ──────────────────────────────────────────────────
+function setLang(l){
+  lang=l;
+  saveAll();
+  el('lbel').classList.toggle('active',l==='el');
+  el('lben').classList.toggle('active',l==='en');
+  document.querySelectorAll('[data-el]').forEach(function(n){
+    n.textContent=n.getAttribute('data-'+l);
+  });
+  refreshAll();
+  // Re-render dynamic content that uses lang variable directly
+  renderBBTHistory();
+  renderIntHistory();
+  renderAllTips();
+  if(pregnancyData) renderPregTracker();
+  if(pillData) renderPillStrip();
+}
+
+// ── THEME ─────────────────────────────────────────────────────
+function toggleTheme(){
+  isDark=!isDark;
+  document.documentElement.setAttribute('data-theme',isDark?'dark':'');
+  el('themeBtn').textContent=isDark?'☀️':'🌙';
+  saveAll();
+}
+
+// ── PAGES ─────────────────────────────────────────────────────
+function showPage(name,btn){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});
+  el('page-'+name).classList.add('active');
+  if(btn) btn.classList.add('active');
+  if(name==='bbt') setTimeout(renderBBTChart,50);
+  if(name==='more') renderAllTips();
+  if(name==='calendar') renderCalendar();
+}
+
+// ── TABS ──────────────────────────────────────────────────────
+function pregTab(btn,id){
+  document.querySelectorAll('#page-pregnancy .tab').forEach(function(t){t.classList.remove('active');});
+  btn.classList.add('active');
+  ['pt-preg','pt-pill','pt-support'].forEach(function(t){
+    el(t).style.display=t===id?'block':'none';
+  });
+}
+function moreTab(btn,id){
+  document.querySelectorAll('#page-more .tab').forEach(function(t){t.classList.remove('active');});
+  btn.classList.add('active');
+  ['mt-tips','mt-rem','mt-quiz','mt-nutr'].forEach(function(t){
+    el(t).style.display=t===id?'block':'none';
+  });
+  if(id==='mt-quiz') renderQuiz();
+  if(id==='mt-tips') renderAllTips();
+}
+
+// ── ONBOARDING ────────────────────────────────────────────────
+function obNext(){
+  el('ob1').classList.remove('active');
+  el('ob2').classList.add('active');
+  el('od1').classList.remove('active');
+  el('od2').classList.add('active');
+}
+function obFinish(){
+  var lp=el('ob-lp').value;
+  if(!lp){toast(lang==='el'?'Παρακαλώ επίλεξε ημερομηνία':'Please select a date');return;}
+  var cl=parseInt(el('ob-cl').value)||28;
+  var pl=parseInt(el('ob-pl').value)||5;
+  var name=el('ob-name').value;
+  if(name){ window._userName=name; } else { window._userName=''; }
+  el('homeGreeting').textContent=getGreeting(window._userName);
+  el('lastPeriod').value=lp;
+  el('cycleLen').value=cl;
+  el('periodLen').value=pl;
+  setCycleData(new Date(lp),cl,pl);
+  saveAll();
+  el('onboard').style.display='none';
+}
+
+// ── CYCLE DATA ────────────────────────────────────────────────
+function updateCycle(){
+  var lp=el('lastPeriod').value;
+  if(!lp) return;
+  var cl=parseInt(el('cycleLen').value)||28;
+  var pl=parseInt(el('periodLen').value)||5;
+  setCycleData(new Date(lp),cl,pl);
+}
+function setCycleData(lpDate,cl,pl){
+  var ovDay=cl-14;
+  cycleData={lp:lpDate,cl:cl,pl:pl,ovDay:ovDay,fertStart:ovDay-4,fertEnd:ovDay+1};
+  saveAll();
+  refreshAll();
+}
+function getDayOfCycle(){
+  if(!cycleData) return 1;
+  var today=new Date(); today.setHours(0,0,0,0);
+  var lp=new Date(cycleData.lp); lp.setHours(0,0,0,0);
+  var diff=Math.floor((today-lp)/86400000);
+  return (diff%cycleData.cl+cycleData.cl)%cycleData.cl+1;
+}
+
+// ── PHASE CARD ────────────────────────────────────────────────
+function getPhase(day){
+  if(!cycleData) return {name:lang==='el'?'—':'—',color:'linear-gradient(135deg,var(--rose),var(--rose-d))',emoji:'🌸'};
+  var pl=cycleData.pl, fs=cycleData.fertStart, fe=cycleData.fertEnd, ov=cycleData.ovDay;
+  if(day<=pl) return {name:lang==='el'?'Περίοδος':'Menstruation',color:'linear-gradient(135deg,#C9727A,#9E4E55)',emoji:'🔴',fertile:false};
+  if(day===ov) return {name:lang==='el'?'Ωορρηξία':'Ovulation',color:'linear-gradient(135deg,#5A9E8E,#3A7E6E)',emoji:'🎯',fertile:true};
+  if(day>=fs&&day<=fe) return {name:lang==='el'?'Γόνιμες Μέρες':'Fertile Days',color:'linear-gradient(135deg,#7A9E8E,#5A8E7E)',emoji:'🌿',fertile:true};
+  if(day>fe&&day<cycleData.cl-3) return {name:lang==='el'?'Ωχρινική Φάση':'Luteal Phase',color:'linear-gradient(135deg,var(--lav),#7A6EA4)',emoji:'🌙',fertile:false};
+  return {name:lang==='el'?'Θυλακική Φάση':'Follicular Phase',color:'linear-gradient(135deg,var(--gold),#A08050)',emoji:'☀️',fertile:false};
+}
+function renderPhaseCard(){
+  // ── Pregnancy mode ──
+  if(pregnancyData){
+    var today=new Date(); today.setHours(0,0,0,0);
+    var lmp=new Date(pregnancyData.lmp); lmp.setHours(0,0,0,0);
+    var due=new Date(pregnancyData.due);
+    var daysPreg=Math.floor((today-lmp)/86400000);
+    var weeks=Math.floor(daysPreg/7);
+    var days=daysPreg%7;
+    var daysLeft=Math.max(0,Math.floor((due-today)/86400000));
+    var pct=Math.min(100,Math.round(daysPreg/280*100));
+    var trim=weeks>=28?3:(weeks>=13?2:1);
+    var trimColor=trim===1?'linear-gradient(135deg,var(--lav),#7A6EA4)':(trim===2?'linear-gradient(135deg,var(--sky),#5A8EAA)':'linear-gradient(135deg,var(--sage),#5A8E7E)');
+    el('phaseBanner').style.background=trimColor;
+    el('phaseTitle').textContent='🤰 '+(lang==='el'?'Εβδομάδα ':'Week ')+weeks;
+    el('phaseSub').textContent=(lang==='el'?'+ '+days+' μέρες | '+trim+'ο Τρίμηνο':'+ '+days+' days | Trimester '+trim);
+    el('phasePct').textContent=daysLeft+(lang==='el'?'μ':'d');
+    el('phaseBarFill').style.width=pct+'%';
+    el('fertileBanner').classList.remove('show');
+    el('countdown').style.display='none';
+    return;
+  }
+  // ── Cycle mode ──
+  if(!cycleData){
+    el('phaseTitle').textContent=lang==='el'?'Εισήγαγε τα δεδομένα κύκλου σου':'Enter your cycle data';
+    el('phaseSub').textContent='';
+    el('phasePct').textContent='';
+    return;
+  }
+  var day=getDayOfCycle();
+  var phase=getPhase(day);
+  var pct=Math.round(day/cycleData.cl*100);
+  el('phaseBanner').style.background=phase.color;
+  el('phaseTitle').textContent=phase.emoji+' '+phase.name;
+  el('phaseSub').textContent=(lang==='el'?'Ημέρα ':'Day ')+day+' / '+cycleData.cl;
+  el('phasePct').textContent=pct+'%';
+  el('phaseBarFill').style.width=pct+'%';
+  var fb=el('fertileBanner');
+  if(phase.fertile){
+    fb.classList.add('show');
+    el('fertileBannerText').textContent=lang==='el'?'Βρίσκεσαι στη γόνιμη περίοδο!':'You are in your fertile window!';
+    el('fertileBannerSub').textContent=lang==='el'?'Αυτές είναι οι μέρες με τις μεγαλύτερες πιθανότητες σύλληψης.':'These are the days with the highest conception chances.';
+  } else {
+    fb.classList.remove('show');
+  }
+  renderCountdown(day);
+}
+function renderCountdown(day){
+  if(!cycleData){el('countdown').style.display='none';return;}
+  el('countdown').style.display='grid';
+  var fs=cycleData.fertStart, ov=cycleData.ovDay, cl=cycleData.cl;
+  var dFert=fs-day; if(dFert<0) dFert+=cl;
+  var dOvul=ov-day; if(dOvul<0) dOvul+=cl;
+  var dPer=cl-day+1;
+  el('cdFertile').textContent=dFert===0?'🌿':dFert;
+  el('cdOvul').textContent=dOvul===0?'🎯':dOvul;
+  el('cdPeriod').textContent=dPer;
+}
+
+// ── HOME DATE ─────────────────────────────────────────────────
+// ── TIME OF DAY ───────────────────────────────────────────────
+function getTimeOfDay(){
+  var h=new Date().getHours();
+  if(h>=5&&h<12) return 'morning';
+  if(h>=12&&h<18) return 'afternoon';
+  return 'evening';
+}
+function getGreeting(name){
+  var h=new Date().getHours();
+  var el_g,en_g,emoji;
+  if(h>=5&&h<12){el_g='Καλημέρα';en_g='Good morning';emoji='☀️';}
+  else if(h>=12&&h<17){el_g='Καλό μεσημέρι';en_g='Good afternoon';emoji='🌤️';}
+  else if(h>=17&&h<21){el_g='Καλό απόγευμα';en_g='Good evening';emoji='🌇';}
+  else{el_g='Καλησπέρα';en_g='Good evening';emoji='🌙';}
+  var base=lang==='el'?el_g:en_g;
+  return name?base+', '+name+'! '+emoji:base+'! '+emoji;
+}
+
+function renderHomeDate(){
+  var today=new Date();
+  var mos=lang==='el'?MOS_EL:MOS_EN;
+  var days_el=['Κυριακή','Δευτέρα','Τρίτη','Τετάρτη','Πέμπτη','Παρασκευή','Σάββατο'];
+  var days_en=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var dayName=lang==='el'?days_el[today.getDay()]:days_en[today.getDay()];
+  el('homeDate').textContent=dayName+', '+today.getDate()+' '+mos[today.getMonth()]+' '+today.getFullYear();
+}
+
+// ── TIPS ──────────────────────────────────────────────────────
+function getTimeTips(){
+  var tod=getTimeOfDay();
+  return TIPS[lang][tod];
+}
+function renderDailyTip(){
+  var tips=getTimeTips();
+  var idx=new Date().getDate()%tips.length;
+  var tod=getTimeOfDay();
+  var label={morning:{el:'🌅 Πρωινή Συμβουλή',en:'🌅 Morning Tip'},afternoon:{el:'🌤️ Μεσημεριανή Συμβουλή',en:'🌤️ Afternoon Tip'},evening:{el:'🌙 Βραδινή Συμβουλή',en:'🌙 Evening Tip'}};
+  var tipCard=document.querySelector('.tip-card');
+  if(tipCard){
+    var emojiEl=tipCard.querySelector('.tip-emoji');
+    if(emojiEl) emojiEl.textContent=tod==='morning'?'🌅':(tod==='afternoon'?'🌤️':'🌙');
+  }
+  var lbl=el('tipLabel');
+  if(lbl) lbl.textContent=label[tod][lang];
+  el('dailyTip').textContent=tips[idx];
+}
+function renderAllTips(){
+  var at=el('allTips');
+  if(!at) return;
+  var sections=[
+    {key:'morning',el:'🌅 Πρωί',en:'🌅 Morning'},
+    {key:'afternoon',el:'🌤️ Μεσημέρι',en:'🌤️ Afternoon'},
+    {key:'evening',el:'🌙 Βράδυ',en:'🌙 Evening'}
+  ];
+  var tod=getTimeOfDay();
+  var html='';
+  sections.forEach(function(s){
+    var tips=TIPS[lang][s.key];
+    var isCurrent=s.key===tod;
+    html+='<div style="margin-bottom:16px"><div style="font-size:12px;font-weight:800;color:var(--ts);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;display:flex;align-items:center;gap:6px">';
+    html+=lang==='el'?s.el:s.en;
+    if(isCurrent) html+='<span style="background:var(--rose-l);color:var(--rose-d);font-size:10px;padding:2px 8px;border-radius:10px">'+(lang==='el'?'Τώρα':'Now')+'</span>';
+    html+='</div>';
+    tips.forEach(function(t){
+      html+='<div class="info-item" style="'+(isCurrent?'':'opacity:.7')+'"><div class="info-emoji">💡</div><div class="info-p">'+t+'</div></div>';
+    });
+    html+='</div>';
+  });
+  at.innerHTML=html;
+}
+
+// ── SYMPTOMS ──────────────────────────────────────────────────
+function toggleSym(el){el.classList.toggle('on');}
+function saveSymptoms(){
+  saveAll();
+  // Log symptom emoji on today
+  var todayKey=getDayKey(new Date());
+  var syms=Object.keys(todaySymptoms).filter(function(k){return todaySymptoms[k];});
+  var symEmoji={'fatigue':'😴','cramps':'🎯','nausea':'🤢','headache':'🤕','mood':'😊','spotting':'🔴','bloating':'🎈','discharge':'💧','breast':'😣'};
+  syms.forEach(function(k){ if(symEmoji[k]) updateDayEvents(todayKey,symEmoji[k]); });
+  toast(lang==='el'?'✅ Συμπτώματα αποθηκεύτηκαν!':'✅ Symptoms saved!');
+}
+
+// ── MOOD ──────────────────────────────────────────────────────
+function logMood(emoji){
+  document.querySelectorAll('.mood-btn').forEach(function(b){b.classList.remove('on');});
+  event.target.closest('.mood-btn').classList.add('on');
+  toast(lang==='el'?'Διάθεση καταγράφηκε! '+emoji:'Mood logged! '+emoji);
+}
+
+// ── SUPPLEMENTS ───────────────────────────────────────────────
+var customSupps = [];       // {id,icon,name,dose}
+var partnerSupps = [];      // {id,icon,name,dose}
+var suppTakenToday = {};    // key->bool
+var partnerSuppTaken = {};  // key->bool
+var hiddenBuiltins = {};    // key->bool
+var selectedSuppIcon = '💊';
+var addSuppTarget = 'me';
+
+// Default partner supplements
+var PARTNER_DEFAULTS = [
+  {id:'pd_zinc', icon:'🔷', name_el:'Ψευδάργυρος', name_en:'Zinc',      dose:'25mg'},
+  {id:'pd_coq10',icon:'🔵', name_el:'CoQ10',        name_en:'CoQ10',     dose:'200mg'},
+  {id:'pd_vitc', icon:'🍊', name_el:'Βιταμίνη C',   name_en:'Vitamin C', dose:'500mg'},
+  {id:'pd_vitd', icon:'☀️', name_el:'Βιταμίνη D',   name_en:'Vitamin D', dose:'1000IU'},
+  {id:'pd_omega',icon:'🐟', name_el:'Ωμέγα-3',      name_en:'Omega-3',   dose:'500mg'},
+  {id:'pd_sele', icon:'⚙️', name_el:'Σελήνιο',      name_en:'Selenium',  dose:'55mcg'}
+];
+
+function suppTab(which){
+  addSuppTarget = which;
+  el('suppPanelMe').style.display       = which==='me'      ? 'block':'none';
+  el('suppPanelPartner').style.display  = which==='partner' ? 'block':'none';
+  el('stabMe').classList.toggle('active',      which==='me');
+  el('stabPartner').classList.toggle('active', which==='partner');
+  el('addSuppForm').style.display = 'none';
+  if(which==='partner') renderPartnerSupps();
+}
+
+function toggleSupp(el2){
+  el2.classList.toggle('taken');
+  var check=el2.querySelector('.supp-check');
+  if(check) check.textContent=el2.classList.contains('taken')?'✓':'○';
+  var key=el2.dataset.key||'';
+  if(key) suppTakenToday[key]=el2.classList.contains('taken');
+  saveAll();
+}
+function togglePartnerSupp(el2){
+  el2.classList.toggle('taken');
+  var check=el2.querySelector('.pc');
+  if(check) check.textContent=el2.classList.contains('taken')?'✓':'○';
+  var key=el2.dataset.key||'';
+  if(key) partnerSuppTaken[key]=el2.classList.contains('taken');
+  saveAll();
+}
+function removeBuiltin(key){
+  hiddenBuiltins[key]=true;
+  saveAll();
+  applyHiddenBuiltins();
+}
+function applyHiddenBuiltins(){
+  document.querySelectorAll('#suppGrid .supp[data-key]').forEach(function(s){
+    s.style.display = hiddenBuiltins[s.dataset.key] ? 'none' : '';
+  });
+}
+
+function openAddSupp(who){
+  if(who) addSuppTarget=who;
+  el('addSuppForm').style.display='block';
+  var t=el('addSuppTitle');
+  if(t) t.textContent = addSuppTarget==='partner'
+    ? (lang==='el'?'➕ Για τον Σύντροφο':'➕ For Partner')
+    : (lang==='el'?'➕ Νέο Συμπλήρωμα':'➕ New Supplement');
+  el('suppName').value='';
+  el('suppDose').value='';
+  selectedSuppIcon='💊';
+  document.querySelectorAll('.supp-icon-opt').forEach(function(s){
+    s.style.borderColor='transparent'; s.style.background='transparent';
+  });
+  var first=document.querySelector('.supp-icon-opt');
+  if(first){first.style.borderColor='var(--rose)';first.style.background='var(--rose-l)';}
+}
+function closeAddSupp(){
+  el('addSuppForm').style.display='none';
+}
+function selectSuppIcon(span){
+  document.querySelectorAll('.supp-icon-opt').forEach(function(s){
+    s.style.borderColor='transparent'; s.style.background='transparent';
+  });
+  span.style.borderColor='var(--rose)';
+  span.style.background='var(--rose-l)';
+  selectedSuppIcon=span.textContent.trim();
+}
+function saveCustomSupp(){
+  var name=el('suppName').value.trim();
+  var dose=el('suppDose').value.trim();
+  if(!name){toast(lang==='el'?'Βάλε όνομα':'Enter a name');return;}
+  var id='cs_'+Date.now();
+  if(addSuppTarget==='partner'){
+    partnerSupps.push({id:id,icon:selectedSuppIcon,name:name,dose:dose});
+    saveAll(); renderPartnerSupps();
+  } else {
+    customSupps.push({id:id,icon:selectedSuppIcon,name:name,dose:dose});
+    saveAll(); renderCustomSupps();
+  }
+  closeAddSupp();
+  toast(lang==='el'?'✅ Προστέθηκε!':'✅ Added!');
+}
+function deleteCustomSupp(id){
+  customSupps=customSupps.filter(function(s){return s.id!==id;});
+  delete suppTakenToday[id];
+  saveAll(); renderCustomSupps();
+}
+function deletePartnerSupp(id){
+  partnerSupps=partnerSupps.filter(function(s){return s.id!==id;});
+  delete partnerSuppTaken[id];
+  saveAll(); renderPartnerSupps();
+}
+function renderCustomSupps(){
+  var grid=el('customSuppGrid');
+  if(!grid) return;
+  grid.innerHTML=customSupps.map(function(s){
+    var tk=suppTakenToday[s.id];
+    return '<div class="supp'+(tk?' taken':'')+'" data-key="'+s.id+'" onclick="toggleSupp(this)">'+
+      '<span class="supp-icon">'+s.icon+'</span>'+
+      '<div><div class="supp-name">'+s.name+'</div>'+(s.dose?'<div class="supp-dose">'+s.dose+'</div>':'')+'</div>'+
+      '<span class="supp-check">'+(tk?'✓':'○')+'</span>'+
+      '<button class="supp-del" onclick="event.stopPropagation();deleteCustomSupp(\"'+s.id+'\")">×</button>'+
+    '</div>';
+  }).join('');
+}
+function renderPartnerSupps(){
+  var grid=el('partnerSuppGrid');
+  if(!grid) return;
+  var rows='';
+  PARTNER_DEFAULTS.forEach(function(s){
+    var nm=lang==='el'?s.name_el:s.name_en;
+    var tk=partnerSuppTaken[s.id];
+    rows+='<div class="p-supp'+(tk?' taken':'')+'" data-key="'+s.id+'" onclick="togglePartnerSupp(this)">'+
+      '<span class="pi">'+s.icon+'</span>'+
+      '<div style="flex:1"><div class="pn">'+nm+'</div><div class="pd">'+s.dose+'</div></div>'+
+      '<span class="pc">'+(tk?'✓':'○')+'</span>'+
+    '</div>';
+  });
+  partnerSupps.forEach(function(s){
+    var tk=partnerSuppTaken[s.id];
+    rows+='<div class="p-supp'+(tk?' taken':'')+'" data-key="'+s.id+'" onclick="togglePartnerSupp(this)">'+
+      '<span class="pi">'+s.icon+'</span>'+
+      '<div style="flex:1"><div class="pn">'+s.name+'</div><div class="pd">'+s.dose+'</div></div>'+
+      '<span class="pc">'+(tk?'✓':'○')+'</span>'+
+      '<button onclick="event.stopPropagation();deletePartnerSupp(\"'+s.id+'\")" style="background:none;border:none;font-size:14px;color:var(--rose-d);cursor:pointer;padding:0 2px">×</button>'+
+    '</div>';
+  });
+  grid.innerHTML=rows;
+}
+// ── WATER ─────────────────────────────────────────────────────
+function initWater(){
+  var row=el('waterRow');
+  if(!row) return;
+  row.innerHTML='';
+  for(var i=0;i<8;i++){
+    var g=document.createElement('span');
+    g.className='water-glass'+(i<waterCount?' full':'');
+    g.textContent='💧';
+    g.dataset.i=i;
+    g.onclick=function(){ setWater(parseInt(this.dataset.i)+1); };
+    row.appendChild(g);
+  }
+  el('waterLabel').textContent=waterCount+' / 8 '+(lang==='el'?'ποτήρια':'glasses');
+}
+function setWater(n){
+  waterCount=n;
+  initWater();
+  saveAll();
+}
+
+// ── CALENDAR ──────────────────────────────────────────────────
+function getDayKey(dt){
+  return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');
+}
+function buildDayIcons(key){
+  var ev=dayEvents[key]||[];
+  if(!ev.length) return '';
+  return '<div class="day-dots">'+ev.map(function(e){return '<span>'+e+'</span>';}).join('')+'</div>';
+}
+function renderCalendar(){
+  var cg=el('calGrid');
+  var cl=el('calDaysHeader');
+  var cm=el('calMonth');
+  if(!cg) return;
+  var days=lang==='el'?DAYS_EL:DAYS_EN;
+  var mos=lang==='el'?MOS_EL:MOS_EN;
+  cm.textContent=mos[calDate.getMonth()]+' '+calDate.getFullYear();
+  cl.innerHTML=days.map(function(d){return '<div class="cal-day-name">'+d+'</div>';}).join('');
+  var today=new Date(); today.setHours(0,0,0,0);
+  var first=new Date(calDate.getFullYear(),calDate.getMonth(),1);
+  var startDow=first.getDay();
+  var daysInMonth=new Date(calDate.getFullYear(),calDate.getMonth()+1,0).getDate();
+  var legend=el('calLegend');
+  var pregLegend=el('calPregLegend');
+  var predCard=el('calPredCard');
+
+  function dayDiv(cls, d, dt){
+    var key=getDayKey(dt);
+    var hasNote=dayNotes[key]?'has-note':'';
+    var icons=buildDayIcons(key);
+    return '<div class="'+cls+' '+hasNote+'" onclick="openDayPanel(\''+key+'\')">'
+      +d+icons+'</div>';
+  }
+
+  if(pregnancyData){
+    if(legend) legend.style.display='none';
+    if(pregLegend) pregLegend.style.display='flex';
+    if(predCard) predCard.style.display='none';
+    var lmp=new Date(pregnancyData.lmp); lmp.setHours(0,0,0,0);
+    var due=new Date(pregnancyData.due); due.setHours(0,0,0,0);
+    var html='';
+    for(var i=0;i<startDow;i++) html+='<div class="cal-day other"></div>';
+    for(var d=1;d<=daysInMonth;d++){
+      var dt=new Date(calDate.getFullYear(),calDate.getMonth(),d);
+      dt.setHours(0,0,0,0);
+      var cls='cal-day';
+      if(dt.getTime()===today.getTime()) cls+=' today';
+      var daysPreg=Math.floor((dt-lmp)/86400000);
+      if(daysPreg>=0&&dt<=due){
+        var wk=Math.floor(daysPreg/7)+1;
+        if(wk<=12) cls+=' preg-t1';
+        else if(wk<=27) cls+=' preg-t2';
+        else cls+=' preg-t3';
+        html+=dayDiv(cls,d,dt);
+      } else if(dt.getTime()===due.getTime()){
+        html+=dayDiv(cls+' preg-due',d,dt);
+      } else {
+        html+=dayDiv(cls,d,dt);
+      }
+    }
+    cg.innerHTML=html; return;
+  }
+  if(legend) legend.style.display='flex';
+  if(pregLegend) pregLegend.style.display='none';
+  if(predCard) predCard.style.display='block';
+  var html='';
+  for(var i=0;i<startDow;i++) html+='<div class="cal-day other"></div>';
+  for(var d=1;d<=daysInMonth;d++){
+    var dt=new Date(calDate.getFullYear(),calDate.getMonth(),d);
+    dt.setHours(0,0,0,0);
+    var cls='cal-day';
+    if(dt.getTime()===today.getTime()) cls+=' today';
+    if(cycleData){
+      var lp=new Date(cycleData.lp); lp.setHours(0,0,0,0);
+      var diff=Math.floor((dt-lp)/86400000);
+      var cycleDayD=((diff%cycleData.cl)+cycleData.cl)%cycleData.cl+1;
+      if(cycleDayD<=cycleData.pl) cls+=' period';
+      else if(cycleDayD===cycleData.ovDay) cls+=' ovulation';
+      else if(cycleDayD>=cycleData.fertStart&&cycleDayD<=cycleData.fertEnd) cls+=' fertile';
+    }
+    html+=dayDiv(cls,d,dt);
+  }
+  cg.innerHTML=html;
+  renderPrediction();
+}
+
+// ── DAY PANEL ─────────────────────────────────────────────────
+function openDayPanel(key){
+  selectedDay=key;
+  var dp=el('dayPanel');
+  dp.style.display='block';
+  // title
+  var parts=key.split('-');
+  var dt=new Date(parseInt(parts[0]),parseInt(parts[1])-1,parseInt(parts[2]));
+  var mos=lang==='el'?MOS_EL:MOS_EN;
+  el('dpTitle').textContent='📅 '+dt.getDate()+' '+mos[dt.getMonth()]+' '+dt.getFullYear();
+  // events
+  var ev=dayEvents[key]||[];
+  var evHtml='';
+  if(ev.length) evHtml='<div style="font-size:16px;letter-spacing:2px;margin-bottom:4px">'+ev.join(' ')+'</div>';
+  // cycle info
+  if(cycleData && !pregnancyData){
+    var lp=new Date(cycleData.lp); lp.setHours(0,0,0,0);
+    dt.setHours(0,0,0,0);
+    var diff=Math.floor((dt-lp)/86400000);
+    var cd=((diff%cycleData.cl)+cycleData.cl)%cycleData.cl+1;
+    var phaseStr='';
+    if(cd<=cycleData.pl) phaseStr=(lang==='el'?'🔴 Περίοδος':'🔴 Period');
+    else if(cd===cycleData.ovDay) phaseStr=(lang==='el'?'🎯 Ωορρηξία':'🎯 Ovulation');
+    else if(cd>=cycleData.fertStart&&cd<=cycleData.fertEnd) phaseStr=(lang==='el'?'🌿 Γόνιμη':'🌿 Fertile');
+    else phaseStr=(lang==='el'?'🌙 Μη γόνιμη':'🌙 Non-fertile');
+    evHtml+='<div>'+phaseStr+' · '+(lang==='el'?'Ημέρα ':'Day ')+cd+'</div>';
+  }
+  if(pregnancyData){
+    var lmpD=new Date(pregnancyData.lmp); lmpD.setHours(0,0,0,0);
+    dt.setHours(0,0,0,0);
+    var dp2=Math.floor((dt-lmpD)/86400000);
+    if(dp2>=0){
+      var wk=Math.floor(dp2/7)+1;
+      evHtml+='<div>🤰 '+(lang==='el'?'Εβδ. ':'Wk ')+wk+'</div>';
+    }
+  }
+  el('dpEvents').innerHTML=evHtml||(lang==='el'?'<span style="opacity:.5">Δεν υπάρχουν καταχωρήσεις</span>':'<span style="opacity:.5">No entries</span>');
+  // note
+  el('dpNote').value=dayNotes[key]||'';
+  dp.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function closeDayPanel(){
+  el('dayPanel').style.display='none';
+  selectedDay=null;
+}
+function saveDayNote(){
+  if(!selectedDay) return;
+  var txt=el('dpNote').value.trim();
+  if(txt) dayNotes[selectedDay]=txt;
+  else delete dayNotes[selectedDay];
+  saveAll();
+  renderCalendar();
+  toast(lang==='el'?'✅ Σημείωση αποθηκεύτηκε!':'✅ Note saved!');
+}
+// Called when intercourse/symptoms logged — update day events
+function updateDayEvents(key, emoji){
+  if(!dayEvents[key]) dayEvents[key]=[];
+  if(dayEvents[key].indexOf(emoji)===-1) dayEvents[key].push(emoji);
+  saveAll();
+}
+
+function calPrev(){calDate=new Date(calDate.getFullYear(),calDate.getMonth()-1,1);renderCalendar();}
+function calNext(){calDate=new Date(calDate.getFullYear(),calDate.getMonth()+1,1);renderCalendar();}
+
+function renderPrediction(){
+  var cp=el('cyclePred');
+  if(!cp) return;
+  if(!cycleData){cp.innerHTML='<p class="fs12 color-soft" data-el="Συμπλήρωσε τα στοιχεία κύκλου πρώτα." data-en="Enter cycle data first.">Συμπλήρωσε τα στοιχεία κύκλου πρώτα.</p>';return;}
+  var mos=lang==='el'?MOS_EL:MOS_EN;
+  var lp=new Date(cycleData.lp);
+  var today=new Date(); today.setHours(0,0,0,0);
+  var diff=Math.floor((today-lp)/86400000);
+  var currentCycle=Math.floor(diff/cycleData.cl);
+  var html='';
+  for(var i=1;i<=3;i++){
+    var nextLP=new Date(lp);
+    nextLP.setDate(lp.getDate()+(currentCycle+i)*cycleData.cl);
+    var nextOv=new Date(nextLP);
+    nextOv.setDate(nextLP.getDate()+cycleData.ovDay-1);
+    html+='<div class="pred-item"><div class="pred-num">'+(i)+'</div><div><div class="pred-h4">'+mos[nextLP.getMonth()]+' '+nextLP.getDate()+'</div><div class="pred-p">'+(lang==='el'?'Ωορρηξία: ':'Ovulation: ')+nextOv.getDate()+' '+mos[nextOv.getMonth()]+'</div></div></div>';
+  }
+  cp.innerHTML=html;
+}
+
+// ── BBT CHART ─────────────────────────────────────────────────
+function addBBT(){
+  var d=el('bbtDate').value;
+  var t=parseFloat(el('bbtTemp').value);
+  if(!d||isNaN(t)){toast(lang==='el'?'Συμπλήρωσε ημερομηνία και θερμοκρασία':'Enter date and temperature');return;}
+  bbtData=bbtData.filter(function(x){return x.date!==d;});
+  bbtData.push({date:d,temp:t});
+  bbtData.sort(function(a,b){return a.date.localeCompare(b.date);});
+  el('bbtTemp').value='';
+  saveAll();
+  renderBBTChart();
+  renderBBTHistory();
+  toast(lang==='el'?'✅ Θερμοκρασία καταγράφηκε!':'✅ Temperature logged!');
+}
+function renderBBTChart(){
+  var canvas=el('bbtCanvas');
+  if(!canvas) return;
+  var labels=bbtData.map(function(x){return x.date.slice(5);});
+  var temps=bbtData.map(function(x){return x.temp;});
+  if(bbtChart) bbtChart.destroy();
+  bbtChart=new Chart(canvas,{
+    type:'line',
+    data:{labels:labels,datasets:[{label:'°C',data:temps,borderColor:'var(--rose)',backgroundColor:'rgba(201,114,122,0.08)',borderWidth:2.5,pointRadius:5,pointBackgroundColor:'var(--rose)',pointBorderColor:'white',pointBorderWidth:2,tension:0.3,fill:true}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:35.8,max:37.2,ticks:{callback:function(v){return v.toFixed(1)+'°';}}},x:{ticks:{maxTicksLimit:8}}}}
+  });
+}
+function renderBBTHistory(){
+  var hist=el('bbtHistory');
+  if(!hist) return;
+  if(bbtData.length===0){hist.innerHTML='<p class="fs12 color-soft" data-el="Δεν υπάρχουν καταγραφές ακόμα." data-en="No records yet.">Δεν υπάρχουν καταγραφές ακόμα.</p>';return;}
+  hist.innerHTML=bbtData.slice().reverse().slice(0,10).map(function(x){
+    return '<div class="int-history-item"><span>'+x.date+'</span><span class="fw7">'+x.temp.toFixed(2)+'°C</span></div>';
+  }).join('');
+}
+
+// ── INTERCOURSE & CONCEPTION ──────────────────────────────────
+function getConcProb(dateStr){
+  if(!cycleData) return null;
+  var lp=new Date(cycleData.lp); lp.setHours(0,0,0,0);
+  var target=new Date(dateStr); target.setHours(0,0,0,0);
+  var daysSince=Math.floor((target-lp)/86400000);
+  var cycleNum=Math.max(0,Math.floor(daysSince/cycleData.cl));
+  var ovDate=new Date(lp); ovDate.setDate(lp.getDate()+cycleNum*cycleData.cl+cycleData.ovDay-1);
+  var dFromOv=Math.round((target-ovDate)/86400000);
+  var prob=CONC_PROBS[String(dFromOv)];
+  if(prob===undefined) prob=dFromOv<-5?3:(dFromOv>2?1:0);
+  var dayOfCycle=((daysSince%cycleData.cl)+cycleData.cl)%cycleData.cl+1;
+  var phase;
+  if(dayOfCycle<=cycleData.pl) phase=lang==='el'?'Περίοδος':'Menstruation';
+  else if(dFromOv>=-5&&dFromOv<=0) phase=lang==='el'?'Γόνιμη περίοδος':'Fertile window';
+  else if(dFromOv>0) phase=lang==='el'?'Ωχρινική φάση':'Luteal phase';
+  else phase=lang==='el'?'Θυλακική φάση':'Follicular phase';
+  return {prob:prob,dFromOv:dFromOv,ovDate:ovDate,dayOfCycle:dayOfCycle,phase:phase};
+}
+function logIntercourse(type){
+  var dateKey=new Date().toISOString().slice(0,10);
+  var existing=intercourseLog.findIndex(function(e){return e.date===dateKey&&e.type===type;});
+  if(existing!==-1){
+    intercourseLog.splice(existing,1);
+    saveAll();
+    el('btnUnprot').classList.remove('on');
+    el('btnProt').classList.remove('on');
+    el('concResult').style.display='none';
+    el('concNoCycle').style.display=cycleData?'none':'block';
+    renderIntHistory();
+    return;
+  }
+  intercourseLog=intercourseLog.filter(function(e){return e.date!==dateKey;});
+  intercourseLog.unshift({date:dateKey,type:type});
+  saveAll();
+  el('btnUnprot').classList.toggle('on',type==='unprotected');
+  el('btnProt').classList.toggle('on',type==='protected');
+  el('concNoCycle').style.display='none';
+  el('concResult').style.display='block';
+  if(type==='protected'){
+    el('concBanner').style.background='linear-gradient(135deg,var(--sage),#5A8E7E)';
+    el('concPct').textContent='🛡️';
+    el('concLabel').textContent=lang==='el'?'Προστατευμένη':'Protected';
+    el('concBarFill').style.width='0%';
+    el('concDetail').textContent=lang==='el'?'Προφυλακτικό (σωστή χρήση): ~98%. Αντισυλληπτικό χάπι: ~99%.':'Condom (correct use): ~98%. Pill: ~99%.';
+  } else {
+    var result=getConcProb(dateKey);
+    renderConcResult(result);
+  }
+  renderIntHistory();
+  var todayKey=getDayKey(new Date());
+  updateDayEvents(todayKey, type==='unprotected'?'❤️':'🛡️');
+  toast(lang==='el'?'❤️ Καταγράφηκε!':'❤️ Logged!');
+}
+function renderConcResult(r){
+  if(!r){el('concResult').style.display='none';return;}
+  var prob=r.prob,dFromOv=r.dFromOv,phase=r.phase,dayOfCycle=r.dayOfCycle;
+  var bg,label,advice;
+  if(prob>=25){bg='linear-gradient(135deg,#3A7A50,#2A6040)';label=lang==='el'?'Πολύ υψηλή πιθανότητα!':'Very high probability!';}
+  else if(prob>=15){bg='linear-gradient(135deg,#4A8A4A,#3A7A3A)';label=lang==='el'?'Υψηλή πιθανότητα':'High probability';}
+  else if(prob>=6){bg='linear-gradient(135deg,#9E8840,#7A6A28)';label=lang==='el'?'Μέτρια πιθανότητα':'Moderate probability';}
+  else{bg='linear-gradient(135deg,#7A5050,#5A3838)';label=lang==='el'?'Χαμηλή πιθανότητα':'Low probability';}
+  el('concBanner').style.background=bg;
+  el('concPct').textContent=prob+'%';
+  el('concLabel').textContent=label;
+  el('concBarFill').style.width=Math.min(100,prob*3)+'%';
+  var relText;
+  if(dFromOv===0) relText=lang==='el'?'Ημέρα ωορρηξίας!':'Ovulation day!';
+  else if(dFromOv>0) relText=(lang==='el'?dFromOv+' μέρα/ες μετά ωορρηξία':dFromOv+' day(s) after ovulation');
+  else relText=(lang==='el'?Math.abs(dFromOv)+' μέρα/ες πριν ωορρηξία':Math.abs(dFromOv)+' day(s) before ovulation');
+  el('concDetail').innerHTML=(lang==='el'?'Φάση: ':'Phase: ')+phase+' · '+(lang==='el'?'Ημέρα ':'Day ')+dayOfCycle+'/'+cycleData.cl+'<br>'+relText+'<br><em style="font-size:11px;opacity:.7">'+( lang==='el'?'⚕️ Εκτίμηση βάσει μελετών. Για αντισύλληψη χρησιμοποίησε αξιόπιστη μέθοδο.':'⚕️ Estimate based on studies. Always use reliable contraception.')+'</em>';
+}
+function renderIntHistory(){
+  var h=el('intHistory');
+  if(!h||intercourseLog.length===0){if(h) h.innerHTML='';return;}
+  h.innerHTML=intercourseLog.slice(0,6).map(function(e){
+    var r=e.type==='unprotected'?getConcProb(e.date):null;
+    var label=e.type==='protected'?(lang==='el'?'🛡️ Με προφύλαξη':'🛡️ Protected'):(r?'❤️ '+r.prob+'%':'❤️');
+    return '<div class="int-history-item"><span class="color-soft">'+e.date+'</span><span class="fw7">'+label+'</span></div>';
+  }).join('');
+}
+
+// ── PREGNANCY ─────────────────────────────────────────────────
+function startPreg(){
+  var lmp=el('pregLMP').value;
+  if(!lmp){toast(lang==='el'?'Παρακαλώ επίλεξε ημερομηνία':'Please select a date');return;}
+  var lmpDate=new Date(lmp);
+  var dueDate=new Date(lmpDate); dueDate.setDate(dueDate.getDate()+280);
+  pregnancyData={lmp:lmpDate,due:dueDate};
+  saveAll();
+  el('preg-setup').style.display='none';
+  el('preg-active').style.display='block';
+  renderPregTracker();
+  toast(lang==='el'?'🤰 Παρακολούθηση ξεκίνησε!':'🤰 Tracking started!');
+}
+function renderPregTracker(){
+  if(!pregnancyData) return;
+  var today=new Date(); today.setHours(0,0,0,0);
+  var lmp=new Date(pregnancyData.lmp); lmp.setHours(0,0,0,0);
+  var due=pregnancyData.due;
+  var daysPreg=Math.floor((today-lmp)/86400000);
+  var weeks=Math.floor(daysPreg/7);
+  var extraDays=daysPreg%7;
+  var pct=Math.min(100,Math.round(daysPreg/280*100));
+  el('pregWeek').textContent=weeks;
+  el('pregDays').textContent='+'+(lang==='el'?extraDays+' μέρες | '+pct+'% ολοκλήρωση':extraDays+' days | '+pct+'% complete');
+  var mos=lang==='el'?MOS_EL:MOS_EN;
+  el('pregDue').textContent=(lang==='el'?'📅 Πιθανός τοκετός: ':'📅 Due: ')+due.getDate()+' '+mos[due.getMonth()]+' '+due.getFullYear();
+  var trim=weeks>=28?3:(weeks>=13?2:1);
+  el('pregTrimTitle').textContent=lang==='el'?trim+'ο Τρίμηνο':trim+' Trimester';
+  ['tri1','tri2','tri3'].forEach(function(id,i){
+    el(id).classList.toggle('on',i+1<=trim);
+  });
+  el('pregProgFill').style.width=pct+'%';
+  el('pregPct').textContent=pct+'%';
+  var ms=MILESTONES[lang];
+  var mWeek=[4,6,8,10,12,16,20,24,28,32,36,38,40].slice().reverse().find(function(w){return weeks>=w;})||4;
+  var m=ms[mWeek]||ms[4];
+  el('weekMilestone').innerHTML='<div class="info-item"><div class="info-emoji">👶</div><div><div class="info-h4">'+m.baby+'</div></div></div><div class="info-item"><div class="info-emoji">🌸</div><div><div class="info-p" style="color:var(--text)">'+m.mom+'</div></div></div>';
+}
+function openMiscarriageModal(){el('miscarriageModal').classList.add('open');}
+function endPreg(reason){
+  closeModal('miscarriageModal');
+  var endReason = el('endReason') ? el('endReason').value : reason;
+  pregnancyData=null;
+  saveAll();
+  el('preg-active').style.display='none';
+  el('preg-setup').style.display='block';
+  if(reason==='birth'){
+    toast(lang==='el'?'👶 Συγχαρητήρια! Καλή ζωή στο νέο μέλος!':'👶 Congratulations!');
+    pregTab(document.querySelector('#page-pregnancy .tab:last-child'),'pt-support');
+    setTimeout(function(){
+      var spBaby=document.querySelector('#pt-support .tab:last-child');
+      if(spBaby) supportTab(spBaby,'sp-baby');
+    },100);
+  } else {
+    toast(lang==='el'?'💜 Παρακολούθηση ολοκληρώθηκε':'💜 Tracking ended');
+    pregTab(document.querySelector('#page-pregnancy .tab:last-child'),'pt-support');
+    setTimeout(function(){
+      var spEnd=document.querySelectorAll('#pt-support .tab')[1];
+      if(spEnd) supportTab(spEnd,'sp-end');
+      if(endReason==='termination') setTimeout(function(){endTab('term');},100);
+      else endTab('misc');
+    },100);
+  }
+}
+function resetPreg(){
+  pregnancyData=null;
+  saveAll();
+  el('preg-active').style.display='none';
+  el('preg-setup').style.display='block';
+  pregTab(document.querySelector('#page-pregnancy .tab:first-child'),'pt-preg');
+}
+
+// ── PILL ──────────────────────────────────────────────────────
+var pillCfg={combined:{active:21,pause:7},mini:{active:28,pause:0},patch:{active:21,pause:7},ring:{active:21,pause:7}};
+function setPillType(type,btn){
+  pillType=type;
+  document.querySelectorAll('.pill-type-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+}
+function startPill(){
+  var sd=el('pillStart').value;
+  if(!sd){toast(lang==='el'?'Παρακαλώ επίλεξε ημερομηνία':'Please select a date');return;}
+  pillData={type:pillType,start:new Date(sd),taken:{},paused:{},time:el('pillTime').value};
+  saveAll();
+  el('pill-setup').style.display='none';
+  el('pill-active').style.display='block';
+  renderPillStrip();
+  toast(lang==='el'?'💊 Παρακολούθηση ξεκίνησε!':'💊 Tracking started!');
+}
+function renderPillStrip(){
+  if(!pillData) return;
+  var cfg=pillCfg[pillData.type];
+  var total=cfg.active+cfg.pause;
+  var today=new Date(); today.setHours(0,0,0,0);
+  var start=new Date(pillData.start); start.setHours(0,0,0,0);
+  var daysSince=Math.floor((today-start)/86400000);
+  var cycleDay=((daysSince%total)+total)%total+1;
+  var isPause=cycleDay>cfg.active;
+  var todayKey=today.toISOString().slice(0,10);
+  el('pillStatus').textContent=isPause?(lang==='el'?'⏸️ Παύση — ημέρα '+(cycleDay-cfg.active)+'/'+cfg.pause:'⏸️ Pause day '+(cycleDay-cfg.active)+'/'+cfg.pause):(lang==='el'?'💊 Ενεργός — ημέρα '+cycleDay+'/'+cfg.active:'💊 Active — day '+cycleDay+'/'+cfg.active);
+  var strip=el('pillStrip');
+  strip.innerHTML='';
+  for(var d=1;d<=total;d++){
+    var dayDate=new Date(start); dayDate.setDate(start.getDate()+(Math.floor(daysSince/total)*total)+d-1);
+    var dk=dayDate.toISOString().slice(0,10);
+    var isPauseDay=d>cfg.active&&cfg.pause>0;
+    var isTaken=pillData.taken[dk];
+    var isPaused=pillData.paused[dk];
+    var isMissed=!isPauseDay&&dayDate<today&&!isTaken&&!isPaused;
+    var isToday=dk===todayKey;
+    var cls='pill-day';
+    if(isPaused||isPauseDay) cls+=' pause';
+    else if(isTaken) cls+=' taken';
+    else if(isMissed) cls+=' missed';
+    if(isToday) cls+=' today-ring';
+    var div=document.createElement('div');
+    div.className=cls;
+    div.textContent=d;
+    div.dataset.dk=dk;
+    div.dataset.isPause=isPauseDay?'1':'0';
+    div.onclick=function(){togglePillDay(this.dataset.dk,this.dataset.isPause==='1');};
+    strip.appendChild(div);
+  }
+  var todayPaused=isPause||pillData.paused[todayKey];
+  var todayTaken=pillData.taken[todayKey];
+  var todayEl=el('todayPill');
+  if(todayPaused){
+    todayEl.innerHTML='<div style="color:var(--sage);font-weight:700">⏸️ '+(lang==='el'?'Ημέρα παύσης — δεν χρειάζεται χάπι σήμερα.':'Pause day — no pill needed today.')+'</div>';
+  } else if(todayTaken){
+    todayEl.innerHTML='<div style="color:var(--sage);font-weight:700">✅ '+(lang==='el'?'Πάρθηκε σήμερα! '+pillData.time:'Taken today! '+pillData.time)+'</div>';
+  } else {
+    todayEl.innerHTML='<p style="color:var(--rose-d);font-weight:700;margin-bottom:10px">⏰ '+(lang==='el'?'Θυμήσου το χάπι σου! ('+pillData.time+')':'Remember your pill! ('+pillData.time+')')+'</p><button class="btn btn-primary" onclick="markPillTaken()">✅ '+(lang==='el'?'Πάρθηκε!':'Taken!')+'</button>';
+  }
+}
+function togglePillDay(dk,isPause){
+  if(!pillData) return;
+  if(isPause) pillData.paused[dk]=!pillData.paused[dk];
+  else pillData.taken[dk]=!pillData.taken[dk];
+  saveAll();
+  renderPillStrip();
+}
+function markPillTaken(){
+  if(!pillData) return;
+  pillData.taken[new Date().toISOString().slice(0,10)]=true;
+  saveAll();
+  renderPillStrip();
+  toast(lang==='el'?'✅ Χάπι καταγράφηκε!':'✅ Pill logged!');
+}
+function pausePill(){
+  if(!pillData) return;
+  pillData.paused[new Date().toISOString().slice(0,10)]=true;
+  saveAll();
+  renderPillStrip();
+  toast(lang==='el'?'⏸️ Παύση καταγράφηκε':'⏸️ Pause marked');
+}
+function resumePill(){
+  if(!pillData) return;
+  delete pillData.paused[new Date().toISOString().slice(0,10)];
+  saveAll();
+  renderPillStrip();
+  toast(lang==='el'?'▶️ Επανεκκίνηση!':'▶️ Resumed!');
+}
+function resetPill(){
+  pillData=null;
+  saveAll();
+  el('pill-setup').style.display='block';
+  el('pill-active').style.display='none';
+}
+
+// ── QUIZ ──────────────────────────────────────────────────────
+function renderQuiz(){
+  var c=el('quizContainer');
+  if(!c) return;
+  var pf=el('quizProgFill');
+  if(quizIdx>=QUIZ.length){
+    c.innerHTML='<div class="quiz-score"><div class="quiz-score-num">'+quizScore+'/'+QUIZ.length+'</div><p class="color-soft" style="margin:10px 0">'+(lang==='el'?'Σωστές απαντήσεις!':'Correct answers!')+'</p><div style="font-size:40px;margin:12px 0">'+(quizScore===QUIZ.length?'🏆':quizScore>=3?'⭐':'📚')+'</div><button class="btn btn-primary" onclick="resetQuiz()">'+(lang==='el'?'🔄 Ξανά!':'🔄 Again!')+'</button></div>';
+    if(pf) pf.style.width='100%';
+    return;
+  }
+  var q=QUIZ[quizIdx];
+  if(pf) pf.style.width=(quizIdx/QUIZ.length*100)+'%';
+  c.innerHTML='<p class="fs12 color-soft fw7 mb12">'+(lang==='el'?'Ερώτηση '+(quizIdx+1)+' από '+QUIZ.length:'Question '+(quizIdx+1)+' of '+QUIZ.length)+'</p><div class="quiz-q">'+q.q[lang]+'</div><div class="quiz-opts">'+q.opts[lang].map(function(opt,i){return '<button class="quiz-opt" onclick="answerQuiz('+i+')">'+opt+'</button>';}).join('')+'</div>';
+}
+function answerQuiz(idx){
+  var q=QUIZ[quizIdx];
+  var btns=document.querySelectorAll('.quiz-opt');
+  btns.forEach(function(b,i){
+    if(i===q.correct) b.classList.add('correct');
+    else if(i===idx&&idx!==q.correct) b.classList.add('wrong');
+    b.disabled=true;
+  });
+  if(idx===q.correct) quizScore++;
+  var exp=document.createElement('div');
+  exp.className='quiz-exp';
+  exp.textContent='💡 '+q.exp[lang];
+  document.querySelector('.quiz-opts').after(exp);
+  setTimeout(function(){quizIdx++;renderQuiz();},2000);
+}
+function resetQuiz(){quizIdx=0;quizScore=0;renderQuiz();}
+
+// ── REFRESH ALL ───────────────────────────────────────────────
+function refreshAll(){
+  el('homeGreeting').textContent=getGreeting(window._userName||'');
+  renderHomeDate();
+  renderDailyTip();
+  renderPhaseCard();
+  renderCalendar();
+  initWater();
+}
+
+// ── SUPPORT TABS ──────────────────────────────────────────────
+function supportTab(btn, id) {
+  document.querySelectorAll('#pt-support .tab').forEach(function(t){t.classList.remove('active');});
+  btn.classList.add('active');
+  ['sp-preg','sp-end','sp-baby'].forEach(function(t){
+    var el2 = el(t); if(el2) el2.style.display = t===id ? 'block' : 'none';
+  });
+}
+function endTab(type) {
+  var misc = el('sp-end-misc');
+  var term = el('sp-end-term');
+  var b1 = el('btnEndMisc');
+  var b2 = el('btnEndTerm');
+  if(type==='misc') {
+    if(misc) misc.style.display='block';
+    if(term) term.style.display='none';
+    if(b1) { b1.style.borderColor='var(--lav)'; b1.style.color='var(--lav)'; }
+    if(b2) { b2.style.borderColor='var(--border)'; b2.style.color='var(--text)'; }
+  } else {
+    if(misc) misc.style.display='none';
+    if(term) term.style.display='block';
+    if(b1) { b1.style.borderColor='var(--border)'; b1.style.color='var(--text)'; }
+    if(b2) { b2.style.borderColor='var(--rose)'; b2.style.color='var(--rose-d)'; }
+  }
+}
+
+// ── SAVE / LOAD ────────────────────────────────────────────────
+var STORE_KEY = 'gonimotita_v4';
+
+function saveAll() {
+  try {
+    var data = {
+      userName: window._userName || '',
+      lang: lang,
+      isDark: isDark,
+      cycleData: cycleData ? {
+        lp: cycleData.lp.toISOString(),
+        cl: cycleData.cl,
+        pl: cycleData.pl,
+        ovDay: cycleData.ovDay,
+        fertStart: cycleData.fertStart,
+        fertEnd: cycleData.fertEnd
+      } : null,
+      bbtData: bbtData,
+      waterCount: waterCount,
+      intercourseLog: intercourseLog,
+      pregnancyData: pregnancyData ? {
+        lmp: pregnancyData.lmp.toISOString(),
+        due: pregnancyData.due.toISOString()
+      } : null,
+      pillData: pillData ? {
+        type: pillData.type,
+        start: pillData.start.toISOString(),
+        taken: pillData.taken,
+        paused: pillData.paused,
+        time: pillData.time
+      } : null,
+      pillType: pillType,
+      todaySymptoms: todaySymptoms,
+      customSupps: customSupps,
+      partnerSupps: partnerSupps,
+      suppTakenToday: suppTakenToday,
+      partnerSuppTaken: partnerSuppTaken,
+      hiddenBuiltins: hiddenBuiltins,
+      dayNotes: dayNotes,
+      dayEvents: dayEvents
+    };
+    localStorage.setItem(STORE_KEY, JSON.stringify(data));
+  } catch(e) { console.warn('Save error:', e); }
+}
+
+function loadAll() {
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return false;
+    var data = JSON.parse(raw);
+
+    if (data.userName) {
+      window._userName = data.userName;
+    }
+    if (data.lang) {
+      lang = data.lang;
+      el('lbel').classList.toggle('active', lang==='el');
+      el('lben').classList.toggle('active', lang==='en');
+      document.querySelectorAll('[data-el]').forEach(function(n){
+        n.textContent = n.getAttribute('data-'+lang);
+      });
+    }
+    if (data.isDark) {
+      isDark = true;
+      document.documentElement.setAttribute('data-theme','dark');
+      el('themeBtn').textContent = '☀️';
+    }
+    if (data.cycleData) {
+      cycleData = {
+        lp: new Date(data.cycleData.lp),
+        cl: data.cycleData.cl,
+        pl: data.cycleData.pl,
+        ovDay: data.cycleData.ovDay,
+        fertStart: data.cycleData.fertStart,
+        fertEnd: data.cycleData.fertEnd
+      };
+      el('lastPeriod').value = cycleData.lp.toISOString().slice(0,10);
+      el('cycleLen').value = cycleData.cl;
+      el('periodLen').value = cycleData.pl;
+    }
+    if (data.bbtData) bbtData = data.bbtData;
+    if (data.waterCount) waterCount = data.waterCount;
+    if (data.intercourseLog) intercourseLog = data.intercourseLog;
+    if (data.pregnancyData) {
+      pregnancyData = {
+        lmp: new Date(data.pregnancyData.lmp),
+        due: new Date(data.pregnancyData.due)
+      };
+      el('preg-setup').style.display = 'none';
+      el('preg-active').style.display = 'block';
+    }
+    if (data.pillData) {
+      pillData = {
+        type: data.pillData.type,
+        start: new Date(data.pillData.start),
+        taken: data.pillData.taken || {},
+        paused: data.pillData.paused || {},
+        time: data.pillData.time
+      };
+      el('pill-setup').style.display = 'none';
+      el('pill-active').style.display = 'block';
+      pillType = pillData.type;
+    }
+    if (data.pillType) pillType = data.pillType;
+    if (data.todaySymptoms) todaySymptoms = data.todaySymptoms;
+    if (data.customSupps) customSupps = data.customSupps;
+    if (data.partnerSupps) partnerSupps = data.partnerSupps;
+    if (data.suppTakenToday) suppTakenToday = data.suppTakenToday;
+    if (data.partnerSuppTaken) partnerSuppTaken = data.partnerSuppTaken;
+    if (data.hiddenBuiltins) hiddenBuiltins = data.hiddenBuiltins;
+    if (data.dayNotes) dayNotes = data.dayNotes;
+    if (data.dayEvents) dayEvents = data.dayEvents;
+    return true;
+  } catch(e) { console.warn('Load error:', e); return false; }
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function(){ try {
+  var today = new Date();
+  var todayStr = today.toISOString().slice(0,10);
+
+  // Set default dates for inputs
+  el('bbtDate').value = todayStr;
+  el('pillStart').value = todayStr;
+  var lmpDefault = new Date(today); lmpDefault.setDate(today.getDate()-14);
+  el('pregLMP').value = lmpDefault.toISOString().slice(0,10);
+  var lpDefault = new Date(today.getFullYear(), today.getMonth(), 1);
+  el('lastPeriod').value = lpDefault.toISOString().slice(0,10);
+
+  // Load saved data
+  var hasData = loadAll();
+
+  // Show onboarding only if no saved data
+  if (hasData && window._userName !== undefined) {
+    el('onboard').style.display = 'none';
+  }
+
+  // Greeting
+  el('homeGreeting').textContent = getGreeting(window._userName || '');
+
+  refreshAll();
+
+  // Restore BBT history and intercourse history
+  renderBBTHistory();
+  renderCustomSupps();
+  applyHiddenBuiltins();
+  renderIntHistory();
+
+  // Restore built-in supp taken state
+  document.querySelectorAll('#suppGrid .supp[data-key]').forEach(function(s){
+    var key=s.dataset.key;
+    if(suppTakenToday[key]){
+      s.classList.add('taken');
+      var c=s.querySelector('.supp-check');
+      if(c) c.textContent='✓';
+    }
+  });
+  // Restore pill strip if active
+  if (pillData) renderPillStrip();
+
+  // Restore pregnancy tracker if active
+  if (pregnancyData) renderPregTracker();
+
+  document.querySelectorAll('.modal-overlay').forEach(function(m){
+    m.addEventListener('click', function(e){ if(e.target===m) m.classList.remove('open'); });
+  });
+} catch(err) {
+  console.error('INIT ERROR:', err);
+  // Show visible error on screen
+  var d=document.createElement('div');
+  d.style.cssText='position:fixed;top:0;left:0;right:0;background:#c00;color:#fff;padding:12px;font-size:13px;z-index:9999;word-break:break-all;white-space:pre-wrap;';
+  d.textContent='ERROR: '+err.message+'\n'+err.stack;
+  document.body.appendChild(d);
+}
+});
+</script>
+</body>
+</html>
